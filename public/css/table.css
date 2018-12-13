@@ -1,0 +1,27 @@
+table{
+  border-collapse:collapse;
+  margin:0 auto;
+  width: 1000px;
+  background-color: white;
+}
+td,th{
+  border:1px solid black;
+  padding:10px;
+}
+div#main-edit{
+    width: 1000px;
+    margin: 0 auto;
+
+}
+
+@media screen and (max-width: 1000px){
+    table{
+        width: 100%;
+        border-collapse:collapse;
+        margin:0 auto;
+    }
+    div#main-edit{
+        width: 100%;
+        margin: 0 auto;
+    }
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>入力画面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/header.css">
+    <link rel="stylesheet" type="text/css" href="\css\navigation.css">
+    <link rel="stylesheet" type="text/css" href="\css\tooltip.css">
+    <link rel="stylesheet" type="text/css" href="\css\table.css">
+</head>
+
+<body>
+<%- include('./header') %>
+<div id="main-edit">
+<h1>ユーザー対応記録</h1>
+
+<table>
+	<tbody>
+		<tr>
+            <td>対応日時</td>
+            <td>
+                <%= month %>
+                月<%= day %>日(火)</td>
+            <td>  :   ~ <%= hour %>:<%= min %></td>
+            <td>担当者</td>
+            <td>石田</td>
+		</tr>
+		<tr>
+			<td rowspan="2">学生</td>
+			<td>氏名</td>
+			<td>hoge</td>
+			<td>学生番号</td>
+			<td>0000</td>
+		</tr>
+		<tr>
+			<td>連絡先</td>
+			<td>0909090909</td>
+			<td>基盤ID</td>
+			<td>ckw13004</td>
+		</tr>
+		<tr>
+			<td>対応種別</td>
+			<td colspan="4">証明書リクエスト</td>
+		</tr>
+		<tr>
+			<td>aaa</td>
+			<td colspan="4">vvv</td>
+		</tr>
+	</tbody>
+</table>
+
+</div>
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,143 @@
+div#main {
+    margin: auto;
+    /* ページ全体のmargin */
+    padding: 0px;
+    /* ページ全体のpadding */
+    text-align: center;
+    width: 1000px;
+    }
+
+body{
+    background-color: lightgray;
+    margin: 8px;
+}
+#main-menu{
+    font-size: 24px;
+    font-family: monospace;
+
+}
+a{
+    color: orange;
+    text-decoration-line: none;
+}
+
+span#title {
+    font-size: 54px;
+    font-weight: bold;
+}
+
+span.text {
+    font-size: 34px;
+    /* width: 1000px; */
+}
+
+#home {
+    width: 100%;
+    /* margin-left: 20%;
+    margin-right: 20%; */
+    margin-top: 50px;
+    margin-left:auto;    /* 左側マージンを自動的に空ける */
+    margin-right:auto;   /* 右側マージンを自動的に空ける */
+    text-align:left;     /* 中身を左側表示に戻す */
+}
+
+.dtable {
+    display: table;
+    /* ブロックレベル要素をtableと同じように表示にする */
+    word-break: break-all;
+}
+.input-dtable {
+    display: inline-block;
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dtable_c {
+    display: table-cell;
+    border: 2px;
+    padding: 10px;
+    width: 160px;
+}
+
+.dtable_text {
+    display: block;
+    border: 2px;
+    padding-left: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%
+}
+
+.folder {
+    font-size: 32px;
+    padding: 0.5em 1em;
+    margin: 0.3em 0;
+    color: #5989cf;
+    background: #c6e4ff;
+    border-bottom: solid 6px #aac5de;
+    border-radius: 9px;
+    width: 100%;
+}
+.folderLink{
+    color: #5989cf;
+    text-decoration: none;
+
+}
+
+#plusimg {
+    /* margin-left: 950px; */
+    width: 100px;
+    margin-left: auto;
+    
+
+}
+
+textarea {
+    width: 80%;
+    height: 700px;
+    background: white;
+    border: 3px solid #EEA34A;
+    font-size: 24px;
+}
+
+textarea:focus {
+    background: white;
+    border: 1px solid #4881d9;
+}
+
+input[type="text"] {
+    width: 80%;
+    height: 36px;
+    background: white;
+    border: 3px solid #EEA34A;
+    font-size: 24px;
+}
+
+input[type="text"]:focus {
+    background: white;
+    border: 1px solid #4881d9;
+}
+
+.menu {
+    display: none;
+}
+ul li, ol li {
+    line-height: 1.5;
+    padding: 0.5em 0;
+  }
+.fileList{
+    background: #fffcf4;
+    border-radius :8px;/*角の丸み*/
+    box-shadow :0px 0px 5px silver;/*5px=影の広がり具合*/
+    padding: 0.5em 0.5em 0.5em 2em;
+}
+
+@media screen and (max-width: 1000px){
+    div#main{
+        width: 100%;
+        margin: auto;
+        padding: 0px;
+        text-align: center;
+    }
+}
