@@ -42,9 +42,9 @@
 
 
     <div id="home">
-        <div class="dtable">
+        <!-- <div class="dtable"> -->
 
-            <div class="dtable_c">
+            <!-- <div class="dtable_c">
                 <% var filedata = [['folderName','id','title']] %>
                 <% filedata.forEach(function(v,k) { %>
                 <div class="folder" id="<%= v[0] %>">
@@ -58,26 +58,29 @@
                     </div>
                 </div>
 
-            </div>
+            </div> -->
 
-            <div class="dtable_text">
-                <ul id="main-menu">
-                </ul>
-                <% var filename = [['folderName','id','title'],['folderName','id2','title2']] %>
-                <% filename.forEach(function(v,k) { %>
-                <div class="<%= v[0] %>">
-                    <li>
-                        <a href="<%= v[1] %>">
-                            <%= v[2] %></a>
-                    </li>
+                <div id="main-menu">
+                    <% var filename = [['folderName','id','title'],['folderName','id2','title2']] %>
+                    <% filename.forEach(function(v,k) { %>
+                    <div class="folderName">
+                        <span class="box-title">
+                            <a href="/">
+                                <%= v[2]%>
+                            </a>
+                        </span>
+                        <span id="title">title</span>
+                        <hr>
+                        <p>texttext</p>
+                    </div>
+                    <% }); %>
                 </div>
-                <% }); %>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-
-</body>
-</html>
+                <!-- </div> -->
+                </div>
+                
+                </div>
+                
+                
+                </body>
+                
+                </html>
