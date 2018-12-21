@@ -44,10 +44,32 @@ $(function () {
     //   });
 });
 
-$(function(){
+$(function () {
     console.log("addClass");
     var result = $("ul#main-menu").find("li");
     console.log(result);
     console.log(result[0]);
-	$("ul#main-menu li").addClass("fileList");
+    $("ul#main-menu li").addClass("fileList");
+});
+
+$(document).ready(function () {
+    $('.tooltip').tooltipster({
+        animation: 'fade',
+        arrow: false,
+        trigger: 'click',
+        theme: ['tooltipster-default','tooltipster-default-customized'],
+        position: 'bottom',
+        interactive:'true',
+        functionInit: function(instance, helper) {
+            var content = $(helper.origin).find('.tooltip_content').detach();
+            instance.content(content);
+        },
+        functionReady: function() {
+            $('a').click(function() {
+                $('.tooltip').tooltipster('close');
+                console.log("aaa");
+            })
+        }
+        
+    });
 });
