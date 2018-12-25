@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<%- include('./htmlSetting') %>
+
+<body>
+    <%- include('./header') %>
+    <!--folderNameからContentBoxに変更しておく-->
+    <div id="main-edit">
+        <div class="folderName">
+            <ul>
+                <% name.forEach(function (v,k) { %>
+                <li>
+                    <a href="<%=v %>">
+                     <%= v %>
+                    </a>
+                </li>
+                <hr>
+                <% }); %>
+
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>

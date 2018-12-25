@@ -3,27 +3,35 @@ div#main {
     /* ページ全体のmargin */
     padding: 0px;
     /* ページ全体のpadding */
-    text-align: center;
     width: 1000px;
-    }
+}
 
-body{
+div#main-edit {
+    margin: auto;
+    /* ページ全体のmargin */
+    width: 1000px;
+}
+
+body {
     background-color: lightgray;
     margin: 8px;
 }
-#main-menu{
+
+#main-menu {
     font-size: 24px;
     font-family: monospace;
     width: 100%;
 }
-a{
-    color: orange;
+
+a {
+    color: white;
     text-decoration-line: none;
 }
 
-span#title {
+#title {
     font-size: 54px;
     font-weight: bold;
+    color: white;
 }
 
 span.text {
@@ -36,9 +44,12 @@ span.text {
     /* margin-left: 20%;
     margin-right: 20%; */
     margin-top: 50px;
-    margin-left:auto;    /* 左側マージンを自動的に空ける */
-    margin-right:auto;   /* 右側マージンを自動的に空ける */
-    text-align:left;     /* 中身を左側表示に戻す */
+    margin-left: auto;
+    /* 左側マージンを自動的に空ける */
+    margin-right: auto;
+    /* 右側マージンを自動的に空ける */
+    text-align: left;
+    /* 中身を左側表示に戻す */
 }
 
 .dtable {
@@ -46,6 +57,7 @@ span.text {
     /* ブロックレベル要素をtableと同じように表示にする */
     word-break: break-all;
 }
+
 .input-dtable {
     display: inline-block;
     width: 1000px;
@@ -79,7 +91,8 @@ span.text {
     border-radius: 9px;
     width: 100%;
 }
-.folderLink{
+
+.folderLink {
     color: #5989cf;
     text-decoration: none;
 
@@ -89,16 +102,16 @@ span.text {
     /* margin-left: 950px; */
     width: 100px;
     margin-left: auto;
-    
+
 
 }
 
 textarea {
-    width: 80%;
-    height: 700px;
+    width: 100%;
+    height: 100px;
     background: white;
     border: 3px solid #EEA34A;
-    font-size: 24px;
+    font-size: 20px;
 }
 
 textarea:focus {
@@ -108,10 +121,10 @@ textarea:focus {
 
 input[type="text"] {
     width: 80%;
-    height: 36px;
+    height: 28px;
     background: white;
-    border: 3px solid #EEA34A;
-    font-size: 24px;
+    /* border: 3px solid #EEA34A; */
+    font-size: 20px;
 }
 
 input[type="text"]:focus {
@@ -122,49 +135,58 @@ input[type="text"]:focus {
 .menu {
     display: none;
 }
-ul li, ol li {
+
+ul li,
+ol li {
     line-height: 1.5;
     padding: 0.5em 0;
-  }
-.fileList{
+}
+
+.fileList {
     background: #fffcf4;
-    border-radius :8px;/*角の丸み*/
-    box-shadow :0px 0px 5px silver;/*5px=影の広がり具合*/
+    border-radius: 8px;
+    /*角の丸み*/
+    box-shadow: 0px 0px 5px silver;
+    /*5px=影の広がり具合*/
     padding: 0.5em 0.5em 0.5em 2em;
 }
 
-.folderName{
+.folderName {
     position: relative;
     margin: 2em 0;
     padding: 0.5em 1em;
-    border: solid 3px #62c1ce;
-    border-top-left-radius :0px;/*角の丸み*/
-    border-top-right-radius :8px;/*角の丸み*/
-    border-bottom-left-radius :8px;/*角の丸み*/
-    border-bottom-right-radius :8px;/*角の丸み*/
+    background-color: #c4c6cc75;
+    border-radius: 8px;
+    box-shadow: 0 0 8px gray;
 }
-.folderName .box-title {
-    position: absolute;
-    display: inline-block;
-    top: -27px;
-    left: -3px;
-    padding: 0 9px;
-    height: 25px;
-    line-height: 25px;
-    vertical-align: middle;
-    font-size: 17px;
-    background: rgb(197, 11, 11);
-    color: #ffffff;
-    font-weight: bold;
-    border-radius: 5px 5px 0 0;
-}
+
 .folderName p {
-    margin: 0; 
+    margin: 12px;
     padding: 0;
 }
 
-@media screen and (max-width: 1000px){
-    div#main{
+.square_btn{
+    display: inline-block;
+    padding: 0.2em 0.5em;
+    text-decoration: none;
+    background: #668ad8;/*ボタン色*/
+    color: #FFF;
+    border-bottom: solid 4px #627295;
+    border-radius: 3px;
+    margin:12px;
+    margin-left: auto;
+    width: 73px;
+    font-size: 32px;
+}
+.square_btn:active {/*ボタンを押したとき*/
+    -ms-transform: translateY(4px);
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);/*下に動く*/
+    border-bottom: none;/*線を消す*/
+}
+
+@media screen and (max-width: 1000px) {
+    div#main {
         width: 100%;
         margin: auto;
         padding: 0px;

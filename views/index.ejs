@@ -1,90 +1,194 @@
 <!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>index</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/css/main.css">
-    <link rel="stylesheet" type="text/css" href="/css/header.css">
-    <link rel="stylesheet" type="text/css" href="\css\navigation.css">
-    <link rel="stylesheet" type="text/css" href="\css\tooltip.css">
-    <link rel="stylesheet" type="text/css" href="/tooltipster/dist/css/tooltipster.bundle.min.css" />
-    <link rel="stylesheet" type="text/css" href="\tooltipster\dist\css\plugins\tooltipster\sideTip\themes\tooltipster-default-customized.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="/javascript/main.js"></script>
 
 
-    <!-- jQuery Modal -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
-    <!-- jQuery ToolTip-->
-     <script type="text/javascript" src="/tooltipster/dist/js/tooltipster.bundle.min.js"></script>
-</head>
+<%- include('./htmlSetting') %>
 
 <body>
-<%- include('./header') %>
+	<%- include('./header') %>
+	<!--folderNameからContentBoxに変更しておく-->
+	<div id="main-edit">
+		<div class="folderName">
+			<span id="title">サポート窓口</span>
+			<table>
+				<tbody>
+					<tr>
+						<td style="width:160px;">
+							<b>対応日時：</b>
+						</td>
+						<td style="width:700px;">
+							<input type="text" class="date-input">
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<hr>
+			<div style="display:flex;">
+				<table>
+					<tbody>
+						<tr>
+							<td style="width:160px;">
+								<b>担当者：</b>
+							</td>
+							<td style="width:700px;">
+								<select>
+									<option data-display="Select">選択してください</option>
+									<option value="1">高橋</option>
+									<option value="2">石田</option>
+								</select>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<hr>
+			<b>質問者について</b>
+			<table>
+				<tbody>
+					<tr>
+						<td style="width:160px;">
+							<b>氏名：</b>
+						</td>
+						<td style="width:700px;">
+							<input type="text">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<b>学生（教職員）番号：</b>
+						</td>
+						<td>
+							<input type="text">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<b>連絡先：</b>
+						</td>
+						<td>
+							<input type="text">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<b>基盤ID：</b>
+						</td>
+						<td>
+							<input type="text">
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<hr>
+			<div style="display:flex;">
+				<table>
+					<tbody>
+						<tr>
+							<td style="width:160px;">
+								<b>対応種別：</b>
+							</td>
+							<td style="width:700px;">
+								<select>
+									<option data-display="Select">選択してください</option>
+									<option value="1">証明書リクエスト</option>
+									<option value="2">証明書リクエスト</option>
+									<option value="3">その他</option>
+								</select>
+							</td>
+						</tr>
+					<tr>
+						<td>
+							<b>内容：</b>
+						</td>
+						<td>
+							<input type="text">
+						</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+			<hr>
+			<table>
+				<tbody>
+					<tr>
+						<td style="width:160px;">
+							<b>特記事項：</b>
+						</td>
+						<td style="width:700px;">
+							<textarea name="text" id="text" cols="20" rows="10"></textarea>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<hr>
+			<div style="margin:auto;width:200px;">
+			<input type="checkbox" name="msr_05_chack01" id="msr_05_chack02" />
+			<label for="msr_05_chack02">完了済みならチェック</label>
+			<p class="msr_sendbtn_05">
+				<input type="submit" value="内容を送信する">
+			</p>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<form>
+		<div class="msr_text_05">
+			<label>Text</label>
+			<input type="text" />
+		</div>
+		<div class="msr_radio_05">
+			<p>Radio_button</p>
+			<input type="radio" name="msr_radio_tye03" id="msr_05_radio01" />
+			<label for="msr_05_radio01">Radio1</label>
+			<input type="radio" name="msr_radio_tye03" id="msr_05_radio02" />
+			<label for="msr_05_radio02">Radio2</label>
+		</div>
+		<div class="msr_chack_05">
+			<p>Chack_box</p>
+			<input type="checkbox" name="msr_05_chack01" id="msr_05_chack01" />
+			<label for="msr_05_chack01">Checkbox1</label>
+			<input type="checkbox" name="msr_05_chack01" id="msr_05_chack02" />
+			<label for="msr_05_chack02">Checkbox2</label>
+			<input type="checkbox" name="msr_05_chack01" id="msr_05_chack03" />
+			<label for="msr_05_chack03">Checkbox3</label>
+		</div>
+		<div class="msr_pulldown_05">
+			<p>Pulldown</p>
+			<label>
+				<select>
+					<option value="">選択してください</option>
+					<option value="test1">test1</option>
+					<option value="test2">test2</option>
+					<option value="test3">test3</option>
+					<option value="test4">test4</option>
+					<option value="test5">test5</option>
+				</select>
+			</label>
+		</div>
+
+		<div class="msr_file_05">
+			<p>file</p>
+			<label for="file_photo">
+				画像を選択してください
+				<input type="file" id="file_photo">
+			</label>
+		</div>
+		<div class="msr_textarea_05">
+			<label>Textarea</label>
+			<textarea></textarea>
+		</div>
+		<p class="msr_sendbtn_05">
+			<input type="submit" value="Send">
+		</p>
+		<p class="msr_sendbtn_05">
+			<input type="submit" value="Send" disabled="disabled">
+		</p>
+	</form>
 
 
-<div id="main">
-    <!-- Modal HTML embedded directly into document -->
+</body>
 
-    <div id="addFolder" class="modal">
-        <form action="/post/folder" method="post">
-            <p>
-                追加するフォルダ名:
-                <input type="text" name="folderName" style="width:250px;">
-            </p>
-            <input type="submit" value="OK">
-        </form>
-        <a href="#" rel="modal:close">Close</a>
-    </div>
-
-
-
-    <div id="home">
-        <!-- <div class="dtable"> -->
-
-            <!-- <div class="dtable_c">
-                <% var filedata = [['folderName','id','title']] %>
-                <% filedata.forEach(function(v,k) { %>
-                <div class="folder" id="<%= v[0] %>">
-                    <span>
-                        <%= v[0] %></span>
-                </div>
-                <% }); %>
-                <div th:each="obj: ${folderdata}">
-                    <div class="folder" th:id="${obj.folderName}">
-                        <span th:text="${obj.folderName}"></span>
-                    </div>
-                </div>
-
-            </div> -->
-
-                <div id="main-menu">
-                    <% var filename = [['folderName','id','title'],['folderName','id2','title2']] %>
-                    <% filename.forEach(function(v,k) { %>
-                    <div class="folderName">
-                        <span class="box-title">
-                            <a href="/">
-                                <%= v[2]%>
-                            </a>
-                        </span>
-                        <span id="title">title</span>
-                        <hr>
-                        <p>texttext</p>
-                    </div>
-                    <% }); %>
-                </div>
-                <!-- </div> -->
-                </div>
-                
-                </div>
-                
-                
-                </body>
-                
-                </html>
+</html>

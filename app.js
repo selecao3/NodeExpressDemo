@@ -9,8 +9,6 @@ var bodyParser = require('body-parser');
 
 var indexRouter = require('./routes/index');
 var postRouter = require('./routes/post');
-var pageRouter = require('./routes/page');
-var editRouter = require('./routes/edit');
 
 var app = express();
 
@@ -30,8 +28,6 @@ app.use(bodyParser.urlencoded({
 
 app.use('/', indexRouter);
 app.use('/post', postRouter);
-app.use('/edit', editRouter);
-app.use('/page', pageRouter);
 
 
 
