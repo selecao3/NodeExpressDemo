@@ -1,0 +1,40 @@
+2018-12-26T16:27:49.698+0900 [initandlisten] MongoDB starting : pid=217 port=27017 dbpath=data/db 64-bit host=kazuha-PC
+2018-12-26T16:27:49.699+0900 [initandlisten] db version v2.6.10
+2018-12-26T16:27:49.699+0900 [initandlisten] git version: nogitversion
+2018-12-26T16:27:49.699+0900 [initandlisten] OpenSSL version: OpenSSL 1.0.2g  1 Mar 2016
+2018-12-26T16:27:49.699+0900 [initandlisten] build info: Linux lgw01-12 3.19.0-25-generic #26~14.04.1-Ubuntu SMP Fri Jul 24 21:16:20 UTC 2015 x86_64 BOOST_LIB_VERSION=1_58
+2018-12-26T16:27:49.699+0900 [initandlisten] allocator: tcmalloc
+2018-12-26T16:27:49.699+0900 [initandlisten] options: { config: "data/db/mongodb.conf", storage: { dbPath: "data/db" }, systemLog: { destination: "file", path: "data/db/logs/mongodb.log" } }
+2018-12-26T16:27:49.707+0900 [initandlisten] journal dir=data/db/journal
+2018-12-26T16:27:49.708+0900 [initandlisten] recover : no journal files present, no recovery needed
+2018-12-26T16:27:50.254+0900 [initandlisten] allocating new ns file data/db/local.ns, filling with zeroes...
+2018-12-26T16:27:50.322+0900 [FileAllocator] allocating new datafile data/db/local.0, filling with zeroes...
+2018-12-26T16:27:50.322+0900 [FileAllocator] creating directory data/db/_tmp
+2018-12-26T16:27:50.330+0900 [FileAllocator] done allocating datafile data/db/local.0, size: 64MB,  took 0.004 secs
+2018-12-26T16:27:50.332+0900 [initandlisten] mincore failed: errno:38 Function not implemented
+2018-12-26T16:27:50.332+0900 [initandlisten] mincore failed: errno:38 Function not implemented
+2018-12-26T16:27:50.334+0900 [initandlisten] mincore failed: errno:38 Function not implemented
+2018-12-26T16:27:50.335+0900 [initandlisten] build index on: local.startup_log properties: { v: 1, key: { _id: 1 }, name: "_id_", ns: "local.startup_log" }
+2018-12-26T16:27:50.335+0900 [initandlisten] mincore failed: errno:38 Function not implemented
+2018-12-26T16:27:50.335+0900 [initandlisten] mincore failed: errno:38 Function not implemented
+2018-12-26T16:27:50.335+0900 [initandlisten] 	 added index to empty collection
+2018-12-26T16:27:50.335+0900 [initandlisten] waiting for connections on port 27017
+2018-12-26T16:28:10.366+0900 [signalProcessingThread] got signal 2 (Interrupt), will terminate after current cmd ends
+2018-12-26T16:28:10.366+0900 [signalProcessingThread] now exiting
+2018-12-26T16:28:10.366+0900 [signalProcessingThread] dbexit: 
+2018-12-26T16:28:10.366+0900 [signalProcessingThread] shutdown: going to close listening sockets...
+2018-12-26T16:28:10.366+0900 [signalProcessingThread] closing listening socket: 8
+2018-12-26T16:28:10.366+0900 [signalProcessingThread] closing listening socket: 10
+2018-12-26T16:28:10.366+0900 [initandlisten] Port 27017 is no longer valid
+2018-12-26T16:28:10.366+0900 [signalProcessingThread] removing socket file: /tmp/mongodb-27017.sock
+2018-12-26T16:28:10.371+0900 [signalProcessingThread] shutdown: going to flush diaglog...
+2018-12-26T16:28:10.371+0900 [signalProcessingThread] shutdown: going to close sockets...
+2018-12-26T16:28:10.371+0900 [signalProcessingThread] shutdown: waiting for fs preallocator...
+2018-12-26T16:28:10.371+0900 [signalProcessingThread] shutdown: lock for final commit...
+2018-12-26T16:28:10.371+0900 [signalProcessingThread] shutdown: final commit...
+2018-12-26T16:28:10.386+0900 [signalProcessingThread] shutdown: closing all files...
+2018-12-26T16:28:10.388+0900 [signalProcessingThread] closeAllFiles() finished
+2018-12-26T16:28:10.388+0900 [signalProcessingThread] journalCleanup...
+2018-12-26T16:28:10.388+0900 [signalProcessingThread] removeJournalFiles
+2018-12-26T16:28:10.391+0900 [signalProcessingThread] shutdown: removing fs lock...
+2018-12-26T16:28:10.391+0900 [signalProcessingThread] dbexit: really exiting now

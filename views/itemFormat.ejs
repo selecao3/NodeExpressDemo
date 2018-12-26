@@ -7,19 +7,35 @@
     <!--folderNameからContentBoxに変更しておく-->
     <div id="main-edit">
         <div class="folderName">
-            <ul>
-                <% name.forEach(function (v,k) { %>
-                <li>
-                    <a href="<%=v %>">
-                     <%= v %>
-                    </a>
-                </li>
-                <hr>
-                <% }); %>
+            <table style="width:100%;">
+                <tbody>
+                    <tr>
+                        <td>内容：
+                            <div>
+                                Office365のインストール方法が分からない
+                            </div>
+                    <hr>
+                        </td>
+                    </tr>
+                    <tr>
 
-            </ul>
+                        <td>特記事項：
+                            <div>
+                                hogehoge.
+                            </div>
+                    <hr>
+                        </td>
+                    </tr>
+                    <tr style="text-align:right;">
+                        <td>対応日時：2018年12月1月30日
+                            <br>担当：石田
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </body>
 
 </html>
+

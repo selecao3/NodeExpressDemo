@@ -107,7 +107,7 @@ span.text {
 }
 
 textarea {
-    width: 100%;
+    width: 80%;
     height: 100px;
     background: white;
     border: 3px solid #EEA34A;
@@ -191,5 +191,10 @@ ol li {
         margin: auto;
         padding: 0px;
         text-align: center;
+    }
+    div#main-edit {
+        width: 100%;
+        margin: auto;
+        padding: 0px;
     }
 }

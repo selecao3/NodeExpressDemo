@@ -23,8 +23,6 @@ router.get('/lists/:itemName', function (req, res, next) {
     // name: req.params.itemName
     name: names
   });
-  console.log(req.params.itemName);
-  console.log(names);
 });
 
 module.exports = router;
