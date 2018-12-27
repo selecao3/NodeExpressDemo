@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
+require('data/db);
 
 
 
@@ -27,7 +28,7 @@ app.use(bodyParser.urlencoded({
 
 
 app.use('/', indexRouter);
-app.use('/post', postRouter);
+app.use('/', postRouter);
 
 
 

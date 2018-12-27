@@ -5,8 +5,6 @@ $(function(){
     $(".date-input").flatpickr({
         locale: "ja",
         enableTime: true,
-        defaultDate: 'today',
-        defaulthour: 'today',
         time_24hr:true,
         dateFormat: "Y年m月d日 H時i分",
         

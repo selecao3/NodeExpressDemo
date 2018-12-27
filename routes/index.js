@@ -7,12 +7,14 @@ require('date-utils');
 router.get('/', function (req, res, next) {
   var dt = new Date();
   res.render('index', {
-    month: dt.toFormat("M"),
-    day: dt.toFormat("D"),
-    hour: dt.toFormat("HH24"),
-    min: dt.toFormat("MI")
+    defaultYear: dt.toFormat("YYYY"),
+    defaultMonth: dt.toFormat("M"),
+    defaultDay: dt.toFormat("D"),
+    defaultHour: dt.toFormat("HH24"),
+    defaultMin: dt.toFormat("MI")
   });
 });
+
 router.get('/lists', function (req, res, next) {
   res.render('lists', {
   });
@@ -26,3 +28,5 @@ router.get('/lists/:itemName', function (req, res, next) {
 });
 
 module.exports = router;
+
+

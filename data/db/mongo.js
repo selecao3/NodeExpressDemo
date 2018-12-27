@@ -1,18 +1,19 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var Recipe = new Schema({
-    title: String,
-    content: String,
-    created_at: {
-      type: Date,
-      default: Date.now
-    },
-    last_modified_at: {
-      type: Date,
-      default: Date.now
-    }
+var userData = new Schema({
+    date: String,
+    stuff: String,
+    questioner: String,
+    questionersNumber:String,
+    questionerAddress:String,
+    questionerID:String,
+    questions:String,
+    questionsCon:String,
+    specialText:String,
+    checkFin:String,
+
 });
 
-mongoose.model('Recipe', Recipe);
-mongoose.connect('mongodb://localhost:27017/recipes');
+mongoose.model('userData', userData);
+mongoose.connect('mongodb://localhost:27017/userData');

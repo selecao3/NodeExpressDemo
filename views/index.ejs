@@ -5,186 +5,134 @@
 <body>
 	<%- include('./header') %>
 	<!--folderNameからContentBoxに変更しておく-->
-	<div id="main-edit">
-		<div class="folderName">
-			<span id="title">サポート窓口</span>
-			<table>
-				<tbody>
-					<tr>
-						<td style="width:160px;">
-							<b>対応日時：</b>
-						</td>
-						<td style="width:700px;">
-							<input type="text" class="date-input">
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<hr>
-			<div style="display:flex;">
-				<table>
-					<tbody>
-						<tr>
-							<td style="width:160px;">
-								<b>担当者：</b>
-							</td>
-							<td style="width:700px;">
-								<select>
-									<option data-display="Select">選択してください</option>
-									<option value="1">高橋</option>
-									<option value="2">石田</option>
-								</select>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<hr>
-			<b>質問者について</b>
-			<table>
-				<tbody>
-					<tr>
-						<td style="width:160px;">
-							<b>氏名：</b>
-						</td>
-						<td style="width:700px;">
-							<input type="text">
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<b>学生（教職員）番号：</b>
-						</td>
-						<td>
-							<input type="text">
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<b>連絡先：</b>
-						</td>
-						<td>
-							<input type="text">
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<b>基盤ID：</b>
-						</td>
-						<td>
-							<input type="text">
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<hr>
-			<div style="display:flex;">
-				<table>
-					<tbody>
-						<tr>
-							<td style="width:160px;">
-								<b>対応種別：</b>
-							</td>
-							<td style="width:700px;">
-								<select>
-									<option data-display="Select">選択してください</option>
-									<option value="1">証明書リクエスト</option>
-									<option value="2">証明書リクエスト</option>
-									<option value="3">その他</option>
-								</select>
-							</td>
-						</tr>
-					<tr>
-						<td>
-							<b>内容：</b>
-						</td>
-						<td>
-							<input type="text">
-						</td>
-					</tr>
-					</tbody>
-				</table>
-			</div>
-			<hr>
-			<table>
-				<tbody>
-					<tr>
-						<td style="width:160px;">
-							<b>特記事項：</b>
-						</td>
-						<td style="width:700px;">
-							<textarea name="text" id="text" cols="20" rows="10"></textarea>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-			<hr>
-			<div style="margin:auto;width:200px;">
-			<input type="checkbox" name="msr_05_chack01" id="msr_05_chack02" />
-			<label for="msr_05_chack02">完了済みならチェック</label>
-			<p class="msr_sendbtn_05">
-				<input type="submit" value="内容を送信する">
-			</p>
+    <div id="main-edit">
+        <div class="folderName">
+            <span id="title">サポート窓口</span>
+            <form action="/postData" method="post">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td style="width:160px;">
+                                <b>対応日時：</b>
+                            </td>
+                            <td style="width:700px;">
+                                <input name="date" type="text" class="date-input" value="<%= defaultYear %>年<%= defaultMonth %>月<%= defaultDay %>日 <%= defaultHour %>時<%= defaultMin %>分">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr>
+                <div style="display:flex;">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td style="width:160px;">
+                                    <b>担当者：</b>
+                                </td>
+                                <td style="width:700px;">
+                                    <select name="stuff">
+                                        <option data-display="Select">選択してください</option>
+                                        <option value="高橋">高橋</option>
+                                        <option value="石田">石田</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <hr>
+                <b>質問者について</b>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td style="width:160px;">
+                                <b>氏名：</b>
+                            </td>
+                            <td style="width:700px;">
+                                <input type="text" name="questioner">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>学生（教職員）番号：</b>
+                            </td>
+                            <td>
+                                <input type="text" name="questionersNumber">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>連絡先：</b>
+                            </td>
+                            <td>
+                                <input type="text" name="questionerAddress">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>基盤ID：</b>
+                            </td>
+                            <td>
+                                <input type="text" name="questionerID">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr>
+                <div style="display:flex;">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td style="width:160px;">
+                                    <b>対応種別：</b>
+                                </td>
+                                <td style="width:700px;">
+                                    <select name="questions">
+                                        <option data-display="Select">選択してください</option>
+                                        <option value="証明書リクエスト">証明書リクエスト</option>
+                                        <option value="その他">その他</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>内容：</b>
+                                </td>
+                                <td>
+                                    <input type="text" name="questionsCon">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <hr>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td style="width:160px;">
+                                <b>特記事項：</b>
+                            </td>
+                            <td style="width:700px;">
+                                <textarea name="specialText" id="text" cols="20" rows="10"></textarea>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr>
+                <div style="margin:auto;width:200px;">
+                    <input type="checkbox" name="checkFin" id="msr_05_chack02" />
+                    <label for="msr_05_chack02">完了済みならチェック</label>
+                    <p class="msr_sendbtn_05">
+                    <input type="submit" value="内容を送信する">
+                    </p>
 
-			</div>
+                </div>
+            </form>
 
-		</div>
 
-	</div>
+        </div>
 
-	<form>
-		<div class="msr_text_05">
-			<label>Text</label>
-			<input type="text" />
-		</div>
-		<div class="msr_radio_05">
-			<p>Radio_button</p>
-			<input type="radio" name="msr_radio_tye03" id="msr_05_radio01" />
-			<label for="msr_05_radio01">Radio1</label>
-			<input type="radio" name="msr_radio_tye03" id="msr_05_radio02" />
-			<label for="msr_05_radio02">Radio2</label>
-		</div>
-		<div class="msr_chack_05">
-			<p>Chack_box</p>
-			<input type="checkbox" name="msr_05_chack01" id="msr_05_chack01" />
-			<label for="msr_05_chack01">Checkbox1</label>
-			<input type="checkbox" name="msr_05_chack01" id="msr_05_chack02" />
-			<label for="msr_05_chack02">Checkbox2</label>
-			<input type="checkbox" name="msr_05_chack01" id="msr_05_chack03" />
-			<label for="msr_05_chack03">Checkbox3</label>
-		</div>
-		<div class="msr_pulldown_05">
-			<p>Pulldown</p>
-			<label>
-				<select>
-					<option value="">選択してください</option>
-					<option value="test1">test1</option>
-					<option value="test2">test2</option>
-					<option value="test3">test3</option>
-					<option value="test4">test4</option>
-					<option value="test5">test5</option>
-				</select>
-			</label>
-		</div>
-
-		<div class="msr_file_05">
-			<p>file</p>
-			<label for="file_photo">
-				画像を選択してください
-				<input type="file" id="file_photo">
-			</label>
-		</div>
-		<div class="msr_textarea_05">
-			<label>Textarea</label>
-			<textarea></textarea>
-		</div>
-		<p class="msr_sendbtn_05">
-			<input type="submit" value="Send">
-		</p>
-		<p class="msr_sendbtn_05">
-			<input type="submit" value="Send" disabled="disabled">
-		</p>
-	</form>
+    </div>
 
 
 </body>
