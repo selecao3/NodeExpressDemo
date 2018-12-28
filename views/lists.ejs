@@ -22,13 +22,12 @@
         </div>
         <div id="home">
             <div id="main-menu">
-                <% var filename = [['Office365','id','title'],['その他','id2','title2']] %>
-                <% filename.forEach(function(v,k) { %>
+                <% title.forEach(function(v,k) { %>
                 <div class="folderName">
                     <span id="title">
                         <a href="/lists">
-                            <a href="/lists/<%= v[0] %>">
-                            <%= v[0] %>
+                            <a href="/lists/<%= v %>">
+                            <%= v %>
                             </a>
                         </a>
                     </span>

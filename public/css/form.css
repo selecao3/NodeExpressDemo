@@ -251,7 +251,7 @@
     margin:0 0 10px;
   }
   
-  .msr_sendbtn_05 input[type=submit] {
+  .formButton input[type=submit] {
     background-color: #FFFFFF;
     border:1px solid #999999;
     border-radius: 2px;

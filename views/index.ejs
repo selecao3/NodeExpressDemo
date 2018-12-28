@@ -7,12 +7,12 @@
 	<!--folderNameからContentBoxに変更しておく-->
     <div id="main-edit">
         <div class="folderName">
-            <span id="title">サポート窓口</span>
+            <span id="title">ユーザー対応記録</span>
             <form action="/postData" method="post">
                 <table>
                     <tbody>
                         <tr>
-                            <td style="width:160px;">
+                            <td style="width:170px;">
                                 <b>対応日時：</b>
                             </td>
                             <td style="width:700px;">
@@ -26,7 +26,7 @@
                     <table>
                         <tbody>
                             <tr>
-                                <td style="width:160px;">
+                                <td style="width:170px;">
                                     <b>担当者：</b>
                                 </td>
                                 <td style="width:700px;">
@@ -44,8 +44,20 @@
                 <b>質問者について</b>
                 <table>
                     <tbody>
+                            <tr>
+                                <td style="width:170px;">
+                                    <b>身分：</b>
+                                </td>
+                                <td style="width:700px;">
+                                    <select name="ident">
+                                        <option data-display="Select">選択してください</option>
+                                        <option value="学生">学生</option>
+                                        <option value="教職員">教職員</option>
+                                    </select>
+                                </td>
+                            </tr>
                         <tr>
-                            <td style="width:160px;">
+                            <td style="width:170px;">
                                 <b>氏名：</b>
                             </td>
                             <td style="width:700px;">
@@ -65,7 +77,7 @@
                                 <b>連絡先：</b>
                             </td>
                             <td>
-                                <input type="text" name="questionerAddress">
+                                <input type="text" name="questionersAddress">
                             </td>
                         </tr>
                         <tr>
@@ -73,7 +85,7 @@
                                 <b>基盤ID：</b>
                             </td>
                             <td>
-                                <input type="text" name="questionerID">
+                                <input type="text" name="questionersID">
                             </td>
                         </tr>
                     </tbody>
@@ -83,58 +95,72 @@
                     <table>
                         <tbody>
                             <tr>
-                                <td style="width:160px;">
+                                <td style="width:170px;">
                                     <b>対応種別：</b>
                                 </td>
                                 <td style="width:700px;">
+                                    <% var ary = [
+                                        'パスワードリクエスト',
+                                        'ICカード不具合',
+                                        '履修登録関連',
+                                        '学内ライセンスソフトウェア',
+                                        '端末設定対応',
+                                        '証明書リクエスト',
+                                        '教育用端末関連',
+                                        'その他',
+                                    ]; %>
                                     <select name="questions">
                                         <option data-display="Select">選択してください</option>
-                                        <option value="証明書リクエスト">証明書リクエスト</option>
-                                        <option value="その他">その他</option>
+                                    <% ary.forEach(function (v,k) { %>
+                                    <option value="<%= v %>">
+                                        <%= v %>
+                                    </option>
+                                    <% }); %>
                                     </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <b>内容：</b>
-                                </td>
-                                <td>
-                                    <input type="text" name="questionsCon">
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <hr>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td style="width:160px;">
-                                <b>特記事項：</b>
-                            </td>
-                            <td style="width:700px;">
-                                <textarea name="specialText" id="text" cols="20" rows="10"></textarea>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <hr>
-                <div style="margin:auto;width:200px;">
-                    <input type="checkbox" name="checkFin" id="msr_05_chack02" />
-                    <label for="msr_05_chack02">完了済みならチェック</label>
-                    <p class="msr_sendbtn_05">
-                    <input type="submit" value="内容を送信する">
-                    </p>
-
-                </div>
-            </form>
-
-
-        </div>
-
-    </div>
-
-
-</body>
-
-</html>
+                                    </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>内容：</b>
+                                        </td>
+                                        <td>
+                                            <input type="text" name="questionsCon">
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                    </table>
+                                    </div>
+                                    <hr>
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td style="width:170px;">
+                                                    <b>特記事項：</b>
+                                                </td>
+                                                <td style="width:700px;">
+                                                    <textarea name="specialText" id="text" cols="20" rows="10"></textarea>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <hr>
+                                    <div style="margin:auto;width:200px;">
+                                        <input type="hidden" name="checkFin" value="1">
+                                        <input type="checkbox" name="checkFin" value="0" />
+                                        <label for="checkbox">完了済みならチェック</label>
+                                        <p class="formButton">
+                                            <input type="submit" value="内容を送信する">
+                                        </p>
+                                    
+                                    </div>
+                                    </form>
+                                    
+                                    
+                                    </div>
+                                    
+                                    </div>
+                                    
+                                    
+                                    </body>
+                                    
+                                    </html>

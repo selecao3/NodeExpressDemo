@@ -1,19 +1,24 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+const uri = 'mongodb://localhost/formedDB';
+mongoose.connect(uri,{useNewUrlParser: true});
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connect error:'))
+db.once('open', function () {
+    var FormedData = new Schema({
+        date: String,
+        stuff: String,
+        ident:String,
+        questioner: String,
+        questionersNumber: String,
+        questionersAddress: String,
+        questionersID: String,
+        questions: String,
+        questionsCon: String,
+        specialText: String,
+        checkFin: String,
+    });
+module.exports.FormedModel = mongoose.model('FormedDB', FormedData);
 
-var userData = new Schema({
-    date: String,
-    stuff: String,
-    questioner: String,
-    questionersNumber:String,
-    questionerAddress:String,
-    questionerID:String,
-    questions:String,
-    questionsCon:String,
-    specialText:String,
-    checkFin:String,
 
-});
-
-mongoose.model('userData', userData);
-mongoose.connect('mongodb://localhost:27017/userData');
+})
