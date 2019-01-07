@@ -8,6 +8,12 @@ td,th{
   border:1px solid black;
   padding:10px;
 }
+.td-left{
+    width: 170px;
+}
+td.td-right{
+    width: 700px;
+}
 div#main-edit{
     width: 1000px;
     margin: 0 auto;
@@ -23,5 +29,11 @@ div#main-edit{
     div#main-edit{
         width: 100%;
         margin: 0 auto;
+    }
+    td.td-left{
+        width: 470px;
+    }
+    td.td-right{
+        width: 700px;
     }
 }

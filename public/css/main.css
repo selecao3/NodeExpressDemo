@@ -52,13 +52,13 @@ span.text {
     /* 中身を左側表示に戻す */
 }
 
-.dtable {
+/* .dtable {
     display: table;
     /* ブロックレベル要素をtableと同じように表示にする */
-    word-break: break-all;
-}
+/* word-break: break-all;
+} */
 
-.input-dtable {
+/* .input-dtable {
     display: inline-block;
     width: 1000px;
     margin-left: auto;
@@ -79,6 +79,13 @@ span.text {
     margin-left: auto;
     margin-right: auto;
     width: 100%
+}  */
+td.td-left {
+    width: 170px;
+}
+
+td.td-right {
+    width: 700px;
 }
 
 .folder {
@@ -165,24 +172,29 @@ ol li {
     padding: 0;
 }
 
-.square_btn{
+.square_btn {
     display: inline-block;
     padding: 0.2em 0.5em;
     text-decoration: none;
-    background: #668ad8;/*ボタン色*/
+    background: #668ad8;
+    /*ボタン色*/
     color: #FFF;
     border-bottom: solid 4px #627295;
     border-radius: 3px;
-    margin:12px;
+    margin: 12px;
     margin-left: auto;
     width: 73px;
     font-size: 32px;
 }
-.square_btn:active {/*ボタンを押したとき*/
+
+.square_btn:active {
+    /*ボタンを押したとき*/
     -ms-transform: translateY(4px);
     -webkit-transform: translateY(4px);
-    transform: translateY(4px);/*下に動く*/
-    border-bottom: none;/*線を消す*/
+    transform: translateY(4px);
+    /*下に動く*/
+    border-bottom: none;
+    /*線を消す*/
 }
 
 @media screen and (max-width: 1000px) {
@@ -192,9 +204,27 @@ ol li {
         padding: 0px;
         text-align: center;
     }
+
+    #title {
+        font-size: 34px;
+        font-weight: bold;
+        color: white;
+    }
+
     div#main-edit {
         width: 100%;
         margin: auto;
         padding: 0px;
     }
+
+    td.td-left {
+        width: 35%;
+    }
+textarea {
+    width: 80%;
+    height: 100px;
+    background: white;
+    border: 3px solid #EEA34A;
+    font-size: 14px;
+}
 }
