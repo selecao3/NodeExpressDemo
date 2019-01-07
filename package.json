@@ -11,9 +11,12 @@
     "date-utils": "^1.2.21",
     "debug": "~2.6.9",
     "ejs": "~2.5.7",
+    "encoding-japanese": "^1.0.29",
     "express": "~4.16.0",
     "flatpickr": "^4.5.2",
     "http-errors": "~1.6.2",
+    "jconv": "^0.1.5",
+    "json2csv": "^4.3.2",
     "morgan": "~1.9.0"
   },
   "devDependencies": {

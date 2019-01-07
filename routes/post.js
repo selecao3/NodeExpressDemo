@@ -23,26 +23,17 @@ router.post('/postData', function(req, res, next) {
     checkFin: req.body.checkFin
     });
 
-    console.log(req.body);
     model.save(function(err) {
         if (err) {
             res.send(err);
         }
-        console.log("posted!!");
     });
-    
     res.redirect(302, "/");
 });
 
-router.post('/test', function(req, res, next) {
-    var db = req.db;
-    var collection = db.post('node_demo_coll');
-    collection
-    if (req.folderName) {
-        
-    }
+// router.post('/data2csv', function(req, res, next) {
 
-    res.redirect(302,"users");
-});
+//     res.redirect(302,"users");
+// });
 
 module.exports = router;
