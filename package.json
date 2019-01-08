@@ -17,9 +17,7 @@
     "http-errors": "~1.6.2",
     "jconv": "^0.1.5",
     "json2csv": "^4.3.2",
-    "morgan": "~1.9.0"
-  },
-  "devDependencies": {
+    "morgan": "~1.9.0",
     "mongodb": "^3.1.10",
     "mongoose": "^5.4.0"
   }

@@ -4,6 +4,7 @@ const uri = 'mongodb://localhost/formedDB';
 mongoose.connect(uri,{useNewUrlParser: true});
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connect error:'))
+// todo: mongooseのオプションでselect文
 db.once('open', function () {
     var FormedData = new Schema({
         date: String,
