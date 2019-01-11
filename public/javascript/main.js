@@ -1,4 +1,7 @@
-var before_id;
+const $ = require('jQuery');
+require('jquery-nice-select');
+require('flatpickr');
+import 'C:/Users/kazuha/develop/Node/node_demo01/public/css/main.css';
 
 //$(function(){});でjqueryを使うことができる
 $(function(){
@@ -12,29 +15,11 @@ $(function(){
 });
 
 $(function () {
+    console.log("nice!");
     $('select').niceSelect();
 });
 
 
-$(function () {
-    $('div.folder').click(function () {
-        var id = $(this).attr("id");
-        if (before_id === id) {
-            $('#main-menu').html("");
-            id = 0;
-            $("ul#main-menu").removeClass("fileList");
-        } else {
-            $('#main-menu').html("");
-            $("div." + id).each(function () {
-                str = $(this).html();
-                $('#main-menu').append(str);
-            })
-            console.log("addClass in folder");
-            $("ul#main-menu").addClass("fileList");
-        }
-        before_id = id;
-    })
-})
 
 $(function () {
     console.log("addClass");
@@ -59,7 +44,6 @@ $(document).ready(function () {
         functionReady: function () {
             $('a').click(function () {
                 $('.tooltip').tooltipster('close');
-                console.log("aaa");
             })
         }
 
