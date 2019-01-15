@@ -1,15 +1,14 @@
-var express = require('express');
+const express = require('express');
 //var Model = require('../data/db/model');
-var Mongo = require('../data/db/mongo');
+const Mongo = require('../mongo');
 
-
-var router = express.Router();
+const router = express.Router();
 
 //folderNameがダブっていない＝＞DBへsave
 //folderNameがダブっている＝＞redirect
 router.post('/postData', function(req, res, next) {
     
-    var model = new Mongo.FormedModel({
+    const model = new Mongo.FormedModel({
     date: req.body.date,
     stuff: req.body.stuff,
     ident: req.body.ident,

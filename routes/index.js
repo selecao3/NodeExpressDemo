@@ -1,15 +1,15 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 require('date-utils');
-var Mongo = require('../data/db/mongo');
-var json2csv = require('json2csv');
-var jconv = require('jconv');
-var encodingJ = require('encoding-japanese');
+const Mongo = require('../mongo');
+const json2csv = require('json2csv');
+const jconv = require('jconv');
+const encodingJ = require('encoding-japanese');
 
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  var dt = new Date();
+  const dt = new Date();
   res.render('index', {
     defaultYear: dt.toFormat("YYYY"),
     defaultMonth: dt.toFormat("M"),
@@ -41,7 +41,7 @@ router.get('/data2csv', function (req, res, next) {
     console.log(csv);
     // TODO: 電話番号の先頭０が消える問題
     // TODO: varからconstかletへ
-    var csv2jp = encodingJ.convert(csv,{
+    const csv2jp = encodingJ.convert(csv,{
       to: 'SJIS',
       from: 'UTF8',
       type: 'string'
@@ -53,7 +53,7 @@ router.get('/data2csv', function (req, res, next) {
 });
 
 router.get('/lists', function (req, res, next) {
-  var title = [
+  const title = [
     'パスワードリクエスト',
     'ICカード不具合',
     '履修登録関連',
@@ -75,8 +75,6 @@ router.get('/lists/:itemName', function (req, res, next) {
       items: result.reverse()
     });
   })
-  
-
 });
 
 module.exports = router;
