@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 require('date-utils');
-const Mongo = require('../mongo');
 const json2csv = require('json2csv');
 const jconv = require('jconv');
 const encodingJ = require('encoding-japanese');
+const mongoservice = require('../Services/mongoServices');
 
 
 /* GET home page. */
@@ -20,10 +20,10 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/data2csv', function (req, res, next) {
-  Mongo.FormedModel.findOne({ id: req.param.id }, function (err, result) {
-    if (err) throw err;
+    const promise = mongoservice.findById(req.param.id);
     // json2csvが型を見てるのか
-    const csv = json2csv.parse(result, [
+    promise.then(function(csvTarget) {
+    const csv = json2csv.parse(csvTarget.result, [
       'date',
       'stuff',
       'ident',
@@ -35,7 +35,6 @@ router.get('/data2csv', function (req, res, next) {
       'questionsCon',
       'specialText',
     ]);
-    
     res.setHeader('Content-disposition', 'attachment; filename=data.csv');
     res.setHeader('Content-Type', 'text/csv; charset=Shift_JIS');
     console.log(csv);
@@ -48,9 +47,10 @@ router.get('/data2csv', function (req, res, next) {
     });
     console.log(csv2jp);
     res.send(csv2jp);
-  })
-
-});
+    }, function(error) {
+      console.log(error);
+    })
+  });
 
 router.get('/lists', function (req, res, next) {
   const title = [
@@ -69,14 +69,15 @@ router.get('/lists', function (req, res, next) {
 });
 
 router.get('/lists/:itemName', function (req, res, next) {
-  Mongo.FormedModel.find({ questions: req.params.itemName }, function (err, result) {
-    if (err) throw err;
+  const promise = mongoservice.findByQuestions(req.params.itemName);
+  promise.then(function(items) {
     res.render('itemFormat', {
-      items: result.reverse()
+      items: items.reverse()
     });
+  }, function(error) {
+    console.log(error);
   })
 });
-
 module.exports = router;
 
 
