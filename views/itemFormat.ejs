@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
-<%- include('./htmlSetting') %>
+<%- include('./parts/htmlSetting') %>
 
 <body>
-    <%- include('./header') %>
+    <%- include('./parts/header') %>
     <!--folderNameからContentBoxに変更しておく-->
     <div id="main-edit">
         <% items.forEach(function (v,k) { %>
@@ -14,6 +14,7 @@
                         <td>
                             <b>内容</b>
                             <div>
+                                <%= v.checkFin %>
                                 <%= v.questionsCon %>
                             </div>
                             <!-- pagingと検索 -->

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
-<%- include('./htmlSetting') %>
+<%- include('./parts/htmlSetting') %>
 
 <body>
-    <%- include('./header') %>
+    <%- include('./parts/header') %>
     <!--folderNameからContentBoxに変更しておく-->
     <div id="main-edit">
         <div class="folderName">
@@ -99,7 +99,7 @@
                                     <b>対応種別：</b>
                                 </td>
                                 <td class="td-right">
-                                    <% var ary = [
+                                    <% const ary = [
                                         'パスワードリクエスト',
                                         'ICカード不具合',
                                         '履修登録関連',
@@ -148,7 +148,7 @@
                 <hr>
                 <div style="margin:auto;width:200px;">
                     <input type="hidden" name="checkFin" value="1">
-                    <input type="checkbox" name="checkFin" value="0" />
+                    <input type="checkbox" name="checkFin" value="0">
                     <label for="checkbox">完了済みならチェック</label>
                     <p class="formButton">
                         <input type="submit" value="内容を送信する">
