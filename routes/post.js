@@ -6,13 +6,18 @@ const router = express.Router();
 //folderNameがダブっていない＝＞DBへsave
 //folderNameがダブっている＝＞redirect
 router.post('/postData', function(req, res, next) {
-    const savedb = ms.savesForQuestionerData(res, req.body);
-    if (savedb === 0) {
+    const promise = ms.savesForQuestionerData(res, req.body);
+    promise.then(function() {
         res.redirect(302, '/');
-    }else{
-        // TODO: errorページの作成&そっちに飛ばす
+    }, function() {
         res.redirect(503, '/');
-    }
+    })
+    // if (savedb === 0) {
+        
+    // }else{
+    //     // TODO: errorページの作成&そっちに飛ばす
+    //     res.redirect(503, '/');
+    // }
 });
 
 module.exports = router;

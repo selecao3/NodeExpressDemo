@@ -1,14 +1,5 @@
 const mc = require('../Repository/MongoConnect');
 
-// exports.findByQuestions = function (itemName) {
-//   console.log(itemName);
-//   result01 = mc.formedModel.find({ questions: itemName }, function (err, result) {
-//     if (err) throw err;
-//     console.log(result[0]);
-//   })
-//   console.log(result01[0]);
-//   return result01;
-// };
 exports.findByQuestions = function (itemName) {
   const result = mc.formedModel.find({ questions: itemName }).exec();
   return result
@@ -33,11 +24,5 @@ exports.savesForQuestionerData = function (res, body) {
     specialText: body.specialText,
     checkFin: body.checkFin
   });
-  model.save(function (err) {
-    if (err) {
-      res.send(err);
-      return 1;
-    }
-  });
-  return 0;
+  return model.save()
 }
