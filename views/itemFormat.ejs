@@ -7,7 +7,12 @@
     <!--folderNameからContentBoxに変更しておく-->
     <div id="main-edit">
         <% items.forEach(function (v,k) { %>
-        <div class="folderName">
+        <div class="folderName" style="
+            <% if (v.checkFin == 1) {%>
+            box-shadow: 0 0 8px red;
+            <% } else { %>
+            box-shadow: 0 0 8px green;
+            <% } %>">
             <table style="width:100%;font-size: 20px">
                 <tbody>
                     <tr>

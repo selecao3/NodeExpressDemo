@@ -22,3 +22,9 @@ $(function() {
 $(function() {
   $('select').niceSelect()
 })
+
+$(function() {
+  if ($('#checkFin').prop("checked") == true) {
+    $('#checkFinFalse').hide();
+  }
+})
