@@ -22,9 +22,13 @@ $(function() {
 $(function() {
   $('select').niceSelect()
 })
-
-$(function() {
-  if ($('#checkFin').prop("checked") == true) {
-    $('#checkFinFalse').hide();
-  }
+ 
+$('#checkFin').on('change', function () {
+  $(function () {
+    const flag = $('#checkFinFalse');
+    if ($(this).prop("checked") == true) {
+      console.log("check削除");
+      flag.remove();
+    }
+  })
 })
