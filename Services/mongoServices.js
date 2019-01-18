@@ -1,14 +1,14 @@
-const mc = require('../Repository/MongoConnect')
+const mc = require('../Repository/MongoConnect');
 
 exports.findByQuestions = function(itemName) {
-  const result = mc.formedModel.find({ questions: itemName }).exec()
-  return result
-}
+  const result = mc.formedModel.find({ questions: itemName }).exec();
+  return result;
+};
 
 exports.findById = function(id) {
-  const result = mc.formedModel.findOne({ id: id }).exec()
-  return result
-}
+  const result = mc.formedModel.findOne({ id: id }).exec();
+  return result;
+};
 
 exports.savesForQuestionerData = function(res, body) {
   const model = new mc.formedModel({
@@ -23,6 +23,6 @@ exports.savesForQuestionerData = function(res, body) {
     questionsCon: body.questionsCon,
     specialText: body.specialText,
     checkFin: body.checkFin
-  })
-  return model.save()
-}
+  });
+  return model.save();
+};

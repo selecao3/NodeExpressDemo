@@ -1,12 +1,12 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
-const uri = 'mongodb://localhost/formedDB'
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const uri = 'mongodb://localhost/formedDB';
 mongoose.connect(
   uri,
   { useNewUrlParser: true }
-)
-const db = mongoose.connection
-db.on('error', console.error.bind(console, 'connect error:'))
+);
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connect error:'));
 // todo: mongooseのオプションでselect文
 
 db.once('open', function() {
@@ -22,8 +22,8 @@ db.once('open', function() {
     questionsCon: String,
     specialText: String,
     checkFin: String
-  })
-  module.exports.formedModel = mongoose.model('FormedDB', FormedData)
-})
-module.exports.db = db
-module.exports.Schema = Schema
+  });
+  module.exports.formedModel = mongoose.model('FormedDB', FormedData);
+});
+module.exports.db = db;
+module.exports.Schema = Schema;

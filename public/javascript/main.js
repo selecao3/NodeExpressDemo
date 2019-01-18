@@ -1,13 +1,13 @@
-const jQuery = require('jquery')
-const $ = jQuery
-window.jQuery = jQuery
-require('jquery-nice-select')
-require('../../node_modules/jquery-nice-select/css/nice-select.css')
-require('../../node_modules/flatpickr/dist/flatpickr.min.css')
-require('flatpickr')
-import '../css/main.css'
-import '../css/form.css'
-import '../css/header.css'
+const jQuery = require('jquery');
+const $ = jQuery;
+window.jQuery = jQuery;
+require('jquery-nice-select');
+require('../../node_modules/jquery-nice-select/css/nice-select.css');
+require('../../node_modules/flatpickr/dist/flatpickr.min.css');
+require('flatpickr');
+import '../css/main.css';
+import '../css/form.css';
+import '../css/header.css';
 
 //$(function(){});でjqueryを使うことができる
 $(function() {
@@ -16,19 +16,22 @@ $(function() {
     enableTime: true,
     time_24hr: true,
     dateFormat: 'Y年m月d日 H時i分'
-  })
-})
+  });
+});
 
 $(function() {
-  $('select').niceSelect()
-})
- 
-$('#checkFin').on('change', function () {
-  $(function () {
-    const flag = $('#checkFinFalse');
-    if ($(this).prop("checked") == true) {
-      console.log("check削除");
-      flag.remove();
+  $('select').niceSelect();
+});
+
+$(function() {
+  const targetArea = $('#checkFinFalseArea');
+  const str = targetArea.html();
+  $('#checkFin').change(function() {
+    const prop = $(this).prop('checked');
+    if (prop) {
+      targetArea.html('');
+    } else {
+      targetArea.html(str);
     }
-  })
-})
+  });
+});

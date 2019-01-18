@@ -8,7 +8,7 @@
   },
   "prettier": {
     "singleQuote": true,
-    "semi": false
+    "semi":true 
   },
   "dependencies": {
     "body-parser": "^1.18.3",
