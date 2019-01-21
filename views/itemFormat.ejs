@@ -8,7 +8,7 @@
     <div id="main-edit">
         <% items.forEach(function (v,k) { %>
         <div class="folderName" style="
-            <% if (v.checkFin == 1) {%>
+            <% if (v.checkFin == 0) {%>
             box-shadow: 0 0 8px red;
             <% } else { %>
             box-shadow: 0 0 8px green;
@@ -19,7 +19,6 @@
                         <td>
                             <b>内容</b>
                             <div>
-                                <%= v.checkFin %>
                                 <%= v.questionsCon %>
                             </div>
                             <!-- pagingと検索 -->

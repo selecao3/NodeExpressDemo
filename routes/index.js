@@ -7,7 +7,7 @@ const encodingJ = require('encoding-japanese');
 const mongoservice = require('../Services/mongoServices');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
   const dt = new Date();
   res.render('index', {
     defaultYear: dt.toFormat('YYYY'),
@@ -18,11 +18,11 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.get('/data2csv', function(req, res, next) {
+router.get('/data2csv', function (req, res, next) {
   const promise = mongoservice.findById(req.param.id);
   // json2csvが型を見てるのか
   promise.then(
-    function(csvTarget) {
+    function (csvTarget) {
       const csv = json2csv.parse(csvTarget.result, [
         'date',
         'stuff',
@@ -48,13 +48,14 @@ router.get('/data2csv', function(req, res, next) {
       console.log(csv2jp);
       res.send(csv2jp);
     },
-    function(error) {
+    function (error) {
       console.log(error);
     }
   );
 });
 
-router.get('/lists', function(req, res, next) {
+router.get('/lists', function (req, res, next) {
+  let fld = [];
   const title = [
     'パスワードリクエスト',
     'ICカード不具合',
@@ -65,20 +66,37 @@ router.get('/lists', function(req, res, next) {
     '教育用端末関連',
     'その他'
   ];
+  fld = mongoservice.findForLatestDates(title);
+  let latestDatas = [];
+  fld.forEach(ele=> {
+    console.log(ele);
+    console.log("hoge");
+    ele.then(
+      function (uniqueData) {
+        console.log(uniqueData);
+        latestDatas.push(uniqueData);
+        console.log(latestDatas);
+      },
+      function (error) {
+        console.log(error);
+      }
+    );
+  });
+
   res.render('lists', {
-    title: title
+  title:latestDatas 
   });
 });
 
-router.get('/lists/:itemName', function(req, res, next) {
+router.get('/lists/:itemName', function (req, res, next) {
   const promise = mongoservice.findByQuestions(req.params.itemName);
   promise.then(
-    function(items) {
+    function (items) {
       res.render('itemFormat', {
         items: items.reverse()
       });
     },
-    function(error) {
+    function (error) {
       console.log(error);
     }
   );

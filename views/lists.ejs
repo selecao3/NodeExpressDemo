@@ -14,13 +14,13 @@
                 <div class="folderName">
                     <span id="title">
                         <a href="/lists">
-                            <a href="/lists/<%= v %>">
-                            <%= v %>
+                            <a href="/lists/<%= v.questions %>">
+                            <%= v.questions %>
                             </a>
                         </a>
                     </span>
                     <hr>
-                    <p>更新日時：2018年12月21日
+                    <p>更新日時：<%= v.date %>
                     </p>
                 </div>
                 <% }); %>
