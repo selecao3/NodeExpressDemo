@@ -11,26 +11,30 @@
         <div id="home">
             <div id="main-menu">
                 <% title.forEach(function(v,k) { %>
+                <% if (v !== 'null') { %>
+    
                 <div class="folderName">
                     <span id="title">
                         <a href="/lists">
                             <a href="/lists/<%= v.questions %>">
-                            <%= v.questions %>
+                                <%= v.questions %>
                             </a>
                         </a>
                     </span>
                     <hr>
-                    <p>更新日時：<%= v.date %>
+                    <p>更新日時：
+                        <%= v.date %>
                     </p>
                 </div>
+                <% }; %>
                 <% }); %>
             </div>
             <!-- </div> -->
         </div>
-
+    
     </div>
-
-
-</body>
-
-</html>
+    
+    
+    </body>
+    
+    </html>

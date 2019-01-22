@@ -67,25 +67,18 @@ router.get('/lists', function (req, res, next) {
     'その他'
   ];
   fld = mongoservice.findForLatestDates(title);
-  let latestDatas = [];
-  fld.forEach(ele=> {
-    console.log(ele);
-    console.log("hoge");
-    ele.then(
-      function (uniqueData) {
-        console.log(uniqueData);
-        latestDatas.push(uniqueData);
-        console.log(latestDatas);
-      },
-      function (error) {
-        console.log(error);
-      }
-    );
-  });
+  Promise.all(fld).then(
+    function(fld) {
+      const result = fld.filter(v => v);
+      res.render('lists', {
+      title:result 
+      });
+    },
+    function(error) {
+      console.log(error);
+    }
+  )
 
-  res.render('lists', {
-  title:latestDatas 
-  });
 });
 
 router.get('/lists/:itemName', function (req, res, next) {
