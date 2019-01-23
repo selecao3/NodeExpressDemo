@@ -1,13 +1,12 @@
 const express = require('express');
 const router = express.Router();
 require('date-utils');
-const json2csv = require('json2csv');
-const jconv = require('jconv');
-const encodingJ = require('encoding-japanese');
-const mongoservice = require('../Services/mongoServices');
+const Json2csvParser = require('json2csv').Parser;
+const iconv = require('iconv-lite');
+const ms = require('../Services/mongoServices');
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
+router.get('/', function(req, res, next) {
   const dt = new Date();
   res.render('index', {
     defaultYear: dt.toFormat('YYYY'),
@@ -18,35 +17,36 @@ router.get('/', function (req, res, next) {
   });
 });
 
-router.get('/data2csv', function (req, res, next) {
-  const promise = mongoservice.findById(req.param.id);
+router.get('/data2csv/:id', function (req, res, next) {
+  //MEMO: req.params.id => findByIdのidは_idでないといけない
+  const promise = ms.findById(req.params.id);
+  console.log(req.params.id);
+  const fields = [
+    'date',
+    'stuff',
+    'ident',
+    'questioner',
+    'questionersNumber',
+    'questionersAddress',
+    'questionersID',
+    'questions',
+    'questionsCon',
+    'specialText',
+  ];
   // json2csvが型を見てるのか
   promise.then(
     function (csvTarget) {
-      const csv = json2csv.parse(csvTarget.result, [
-        'date',
-        'stuff',
-        'ident',
-        'questioner',
-        'questionersNumber',
-        'questionersAddress',
-        'questionersID',
-        'questions',
-        'questionsCon',
-        'specialText'
-      ]);
+      console.log(csvTarget);
+      const json2csvParser = new Json2csvParser({fields});
+      const csv = json2csvParser.parse(csvTarget);
       res.setHeader('Content-disposition', 'attachment; filename=data.csv');
-      res.setHeader('Content-Type', 'text/csv; charset=Shift_JIS');
+      res.setHeader('Content-Type', 'text/csv; charset=UTF-8');
       console.log(csv);
-      // TODO: 電話番号の先頭０が消える問題
-      // TODO: varからconstかletへ
-      const csv2jp = encodingJ.convert(csv, {
-        to: 'SJIS',
-        from: 'UTF8',
-        type: 'string'
-      });
-      console.log(csv2jp);
-      res.send(csv2jp);
+      const csvJP = iconv.encode(csv, "Shift-JIS");
+      console.log(csvJP);
+      // TODO: 電話番号の先頭０が消える問題 => 先頭に=をつける。
+
+      res.send(csvJP);
     },
     function (error) {
       console.log(error);
@@ -66,23 +66,22 @@ router.get('/lists', function (req, res, next) {
     '教育用端末関連',
     'その他'
   ];
-  fld = mongoservice.findForLatestDates(title);
+  fld = ms.findForLatestDates(title);
   Promise.all(fld).then(
-    function(fld) {
+    function (fld) {
       const result = fld.filter(v => v);
       res.render('lists', {
-      title:result 
+        title: result
       });
     },
-    function(error) {
+    function (error) {
       console.log(error);
     }
-  )
-
+  );
 });
 
 router.get('/lists/:itemName', function (req, res, next) {
-  const promise = mongoservice.findByQuestions(req.params.itemName);
+  const promise = ms.findByQuestions(req.params.itemName);
   promise.then(
     function (items) {
       res.render('itemFormat', {
@@ -94,4 +93,20 @@ router.get('/lists/:itemName', function (req, res, next) {
     }
   );
 });
+
+router.get('/lists/:itemName/:itemID', function (req, res, next) {
+  const tmp = ms.FinCheck2True(req.params.itemID);
+  const targetName = req.params.itemName;
+  console.log(tmp);
+  res.redirect(302, `/lists/${targetName}`);
+  // promise.then(
+  //   function() {
+  //     res.redirect(302, `/lists/${targetName}`);
+  //   },
+  //   function() {
+  //     res.redirect(503, '/');
+  //   }
+  // );
+});
+
 module.exports = router;

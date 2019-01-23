@@ -6,21 +6,47 @@ exports.findByQuestions = function(itemName) {
 };
 
 exports.findById = function(id) {
-  const result = mc.formedModel.findOne({ id: id }).exec();
+  const result = mc.formedModel.findOne({ _id: id }).exec();
   return result;
 };
 
 exports.findForLatestDates = function(title) {
   const result = [];
   let tmp;
-  title.forEach(ele=> {
-    tmp = mc.formedModel.findOne({ questions : ele}).sort({'date': -1}).exec();
+  title.forEach(ele => {
+    tmp = mc.formedModel
+      .findOne({ questions: ele })
+      .sort({ date: -1 })
+      .exec();
     result.push(tmp);
   });
   return result;
 };
 
-exports.savesForQuestionerData = function(res, body) {
+exports.FinCheck2True = function(itemID) {
+  console.log(itemID);
+  //idではなく、_id
+  mc.formedModel.updateOne(
+    {
+      _id: itemID
+    },
+    {
+      $set: {
+        checkFin: '1'
+      }
+    },
+    {
+      upsert: false
+    },
+    function(err) {
+      if (err) {
+        console.log(err);
+      }
+    }
+  );
+};
+
+exports.savesForQuestionerData = function(body) {
   const model = new mc.formedModel({
     date: body.date,
     stuff: body.stuff,

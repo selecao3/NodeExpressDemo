@@ -3,10 +3,8 @@ const $ = jQuery;
 window.jQuery = jQuery;
 require('jquery-nice-select');
 require('flatpickr');
-require('modaal')
 require('../../node_modules/jquery-nice-select/css/nice-select.css');
 require('../../node_modules/flatpickr/dist/flatpickr.min.css');
-require('../../node_modules/modaal/dist/css/modaal.min.css');
 import '../css/main.css';
 import '../css/form.css';
 import '../css/header.css';
@@ -23,12 +21,6 @@ $(function() {
 
 $(function() {
   $('select').niceSelect();
-});
-
-$(function() {
-  $(".inline").modaal({
-    content_source: '#inline'
-});
 });
 
 $(function() {

@@ -9,9 +9,9 @@
         <% items.forEach(function (v,k) { %>
         <div class="folderName" style="
             <% if (v.checkFin == 0) {%>
-            box-shadow: 0 0 8px red;
+            box-shadow: 0 0 20px red;
             <% } else { %>
-            box-shadow: 0 0 8px green;
+            box-shadow: 0 0 20px green;
             <% } %>">
             <table style="width:100%;font-size: 20px">
                 <tbody>
@@ -26,12 +26,12 @@
                                             <b>内容</b>
                                         </td>
                                         <td>
-                                            <select name="contents" onchange="this.form.submit()">
-                                                <option data-display="Select">選択してください</option>
-                                                <option value="delete">削除</option>
-                                                <option value="update">更新</option>
-                                            </select>
+                                            <% if (v.checkFin === '0') {%>
+                                            <a href="<%= v.questions %>/<%= v.id %>" class="finishedCheck_btn">完了</a>
+                                            <% } %>
+                                            
                                         </td>
+
                                     </tr>
                                     <tr>
                                         <td colspan="2">
@@ -102,7 +102,7 @@
                 </tbody>
             </table>
             </div>
-            <a href="/data2csv/?id=<%= v.id%>">aaa</a>
+            <a href="/data2csv/<%= v.id%>">aaa</a>
             <% }); %>
             </div>
             
