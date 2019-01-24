@@ -201,6 +201,20 @@ ol li {
     font-size: 22px;
 }
 
+.common_btn{
+    display: inline-block;
+    padding: 0.2em 0.5em;
+    text-decoration: none;
+    background: #5067dc;
+    color: #FFF;
+    border-bottom: solid 4px #3f498c;
+    border-radius: 3px;
+    /* margin: 12px; */
+    margin-left: auto;
+    width:45px;
+    font-size: 22px;
+}
+
  .square_btn:active {
     /*ボタンを押したとき*/
     -ms-transform: translateY(4px);
@@ -221,6 +235,12 @@ ol li {
     /*下に動く*/
     border-bottom: none;
     /*線を消す*/
+}
+.common_btn:active{
+    -ms-transform: translateY(4px);
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);
+    border-bottom: none;
 }
 
 @media screen and (max-width: 1000px) {

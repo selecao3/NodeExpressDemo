@@ -1,12 +1,12 @@
 const mc = require('../Repository/MongoConnect');
 
 exports.findByQuestions = function(itemName) {
-  const result = mc.formedModel.find({ questions: itemName }).exec();
+  const result = mc.formedModel.find({questions: itemName}).exec();
   return result;
 };
 
 exports.findById = function(id) {
-  const result = mc.formedModel.findOne({ _id: id }).exec();
+  const result = mc.formedModel.findOne({_id: id}).exec();
   return result;
 };
 
@@ -14,10 +14,7 @@ exports.findForLatestDates = function(title) {
   const result = [];
   let tmp;
   title.forEach(ele => {
-    tmp = mc.formedModel
-      .findOne({ questions: ele })
-      .sort({ date: -1 })
-      .exec();
+    tmp = mc.formedModel.findOne({questions: ele}).sort({date: -1}).exec();
     result.push(tmp);
   });
   return result;
@@ -25,26 +22,52 @@ exports.findForLatestDates = function(title) {
 
 exports.FinCheck2True = function(itemID) {
   console.log(itemID);
-  //idではなく、_id
+  // idではなく、_id
   mc.formedModel.updateOne(
-    {
-      _id: itemID
-    },
-    {
-      $set: {
-        checkFin: '1'
-      }
-    },
-    {
-      upsert: false
-    },
-    function(err) {
-      if (err) {
-        console.log(err);
-      }
-    }
-  );
+      {_id: itemID}, {$set: {checkFin: '1'}}, {upsert: false}, function(err) {
+        if (err) {
+          console.log(err);
+        }
+      });
 };
+
+exports.deleteByID = function(itemID) {
+  mc.formedModel.deleteOne({_id: itemID}, function(err) {
+    if (err) {
+      console.log('error');
+      return false;
+    }
+  });
+  return true;
+};
+
+exports.updateOneDataByBody = function(data, id) {
+  // idではなく、_id
+  console.log(data.questionsCon);
+  mc.formedModel.updateOne(
+      {_id: id}, {
+        $set: {
+          stuff: data.stuff,
+          ident: data.ident,
+          questioner: data.questioner,
+          questionersNumber: data.questionersNumber,
+          questionersAddress: data.questionersAddress,
+          questionersID: data.questionersID,
+          questions: data.questions,
+          questionsCon: data.questionsCon,
+          specialText: data.specialText,
+        }
+      },
+      {upsert: false}, function(err) {
+        if (err) {
+          console.log(err);
+          return false;
+        }
+      });
+  return true;
+};
+
+
 
 exports.savesForQuestionerData = function(body) {
   const model = new mc.formedModel({

@@ -7,7 +7,7 @@
     <!--folderNameからContentBoxに変更しておく-->
     <div id="main-edit">
         <% items.forEach(function (v,k) { %>
-        <div class="folderName" style="
+        <div class="folderName" id="<%= v.id %>" style="
             <% if (v.checkFin == 0) {%>
             box-shadow: 0 0 20px red;
             <% } else { %>
@@ -17,11 +17,11 @@
                 <tbody>
                     <tr>
                         <td>
-            
+
                             <table style="width: 100%;">
                                 <tbody>
                                     <tr>
-            
+
                                         <td style="width:100%;">
                                             <b>内容</b>
                                         </td>
@@ -29,7 +29,7 @@
                                             <% if (v.checkFin === '0') {%>
                                             <a href="<%= v.questions %>/<%= v.id %>" class="finishedCheck_btn">完了</a>
                                             <% } %>
-                                            
+
                                         </td>
 
                                     </tr>
@@ -38,14 +38,11 @@
                                             <div>
                                                 <%= v.questionsCon %>
                                             </div>
-            
+
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
-            
-            
-            
                             <!-- pagingと検索 -->
                             <hr>
                         </td>
@@ -57,23 +54,38 @@
                                 <tbody>
                                     <tr>
                                         <!-- "身分"とかを協調 -->
-                                        <td colspan="2">身分：
+                                        <td colspan="2">
+                                            <b>
+                                                身分：
+                                            </b>
                                             <%= v.ident%>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>氏名：
+                                        <td>
+                                            <b>
+                                                氏名：
+                                            </b>
                                             <%= v.questioner%>
                                         </td>
-                                        <td>学生番号：
+                                        <td>
+                                            <b>
+                                                学生番号：
+                                            </b>
                                             <%= v.questionersNumber%>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>連絡先：
+                                        <td>
+                                            <b>
+                                                連絡先：
+                                            </b>
                                             <%= v.questionersAddress%>
                                         </td>
-                                        <td>基盤ID：
+                                        <td>
+                                            <b>
+                                                基盤ID：
+                                            </b>
                                             <%= v.questionersID%>
                                         </td>
                                     </tr>
@@ -82,7 +94,7 @@
                             <hr>
                         </td>
                     </tr>
-            
+
                     <tr>
                         <td>
                             <b>特記事項</b>
@@ -93,22 +105,47 @@
                         </td>
                     </tr>
                     <tr style="text-align:right;">
-                        <td>対応日時：
+                        <td>
+                            <b>
+                                対応日時：
+                            </b>
                             <%= v.date %>
-                            <br>担当：
+                            <br>
+                            <b>
+                                担当：
+                            </b>
                             <%= v.stuff %>
+                            <hr>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table style="width:100%;text-align:center;">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <a href="/data2csv/<%= v.id%>" class="common_btn">CSV出力</a>
+                                        </td>
+                                        <td>
+                                            <a href="<%= v.questions %>/deleteData/<%= v.id %>" class="common_btn">削除</a>
+                                        </td>
+                                        <td>
+                                            <a href="/updateData/edit/<%= v.id %>" class="common_btn">修正</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </td>
                     </tr>
                 </tbody>
             </table>
-            </div>
-            <a href="/data2csv/<%= v.id%>">aaa</a>
-            <% }); %>
-            </div>
-            
-            
-            
-            
-            </body>
-            
-            </html>
+        </div>
+        <% }); %>
+    </div>
+
+
+
+
+</body>
+
+</html>
