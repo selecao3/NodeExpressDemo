@@ -71,6 +71,8 @@ router.get('/lists', function(req, res, next) {
       });
 });
 
+// TODO: pagingの実装
+
 router.get('/lists/:itemName', function(req, res, next) {
   const promise = ms.findByQuestions(req.params.itemName);
   promise.then(
@@ -81,6 +83,20 @@ router.get('/lists/:itemName', function(req, res, next) {
         console.log(error);
       });
 });
+
+router.get('/lists/:itemName', function(req, res, next) {
+  console.log(req.query.page);
+  const promise = ms.findByQuestions(req.params.itemName);
+  promise.then(
+      function(items) {
+        res.render('itemFormat', {items: items.reverse()});
+      },
+      function(error) {
+        console.log(error);
+      });
+});
+
+
 
 router.get('/lists/:itemName/:itemID', function(req, res, next) {
   const targetName = req.params.itemName;
