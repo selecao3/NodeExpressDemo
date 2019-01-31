@@ -1,14 +1,18 @@
 const mc = require('../Repository/MongoConnect');
+const paginate = require('express-paginate');
 
 exports.findByQuestions = function(itemName) {
-  // TODO:
-  // countDocメソッドで数を取得->総数/5=ページ数を割り出す=>ページ数に応じてクエリを返す新しいメソッドを作る
-  mc.formedModel.countDocuments({questions: itemName}, function(err, c) {
-    console.log(c);
-  });
+  const result = mc.formedModel.find({questions: itemName});
+  const res = mc.formedModel.paginate(result, {page: 1, limit: 1});
+  return res;
+};
 
-  const result = mc.formedModel.find({questions: itemName}).exec();
-  return result;
+exports.paginateTest = function() {
+  console.log('pagination start');
+  mc.formedModel.paginate({}, {page: 1, limit: 5}, function(err, result) {
+    console.log(result);
+  })
+  console.log('pagination fin');
 };
 
 exports.findById = function(id) {

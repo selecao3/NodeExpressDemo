@@ -15,11 +15,14 @@ router.post('/postData', function(req, res, next) {
 });
 
 // MEMO: 問題あり
-router.post('/updateData/:itemID', function(req, res, next) {
+router.post('/updateData/:itemName/:itemID', function(req, res, next) {
   const itemID = req.params.itemID;
+  const itemName = req.params.itemName;
   const flag = ms.updateOneDataByBody(req.body, itemID);
+
+  console.log(`/lists/${itemName}`);
   if (flag) {
-    res.redirect(302, '/');
+    res.redirect(302, `/lists/${itemName}`);
   } else {
     res.redirect(503, '/');
   }

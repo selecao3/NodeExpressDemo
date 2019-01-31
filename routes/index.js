@@ -1,4 +1,5 @@
 const express = require('express');
+
 const router = express.Router();
 require('date-utils');
 const Json2csvParser = require('json2csv').Parser;
@@ -74,10 +75,12 @@ router.get('/lists', function(req, res, next) {
 // TODO: pagingの実装
 
 router.get('/lists/:itemName', function(req, res, next) {
+  // ms.paginateTest();
   const promise = ms.findByQuestions(req.params.itemName);
   promise.then(
       function(items) {
-        res.render('itemFormat', {items: items.reverse()});
+        console.log(items.docs);
+        res.render('itemFormat', {items: items.docs.reverse()});
       },
       function(error) {
         console.log(error);
