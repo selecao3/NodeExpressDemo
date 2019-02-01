@@ -27,7 +27,7 @@
                                         </td>
                                         <td>
                                             <% if (v.checkFin === '0') {%>
-                                            <a href="<%= v.questions %>/<%= v.id %>" class="finishedCheck_btn">完了</a>
+                                            <a href="/lists/<%= v.questions %>/<%= v.id %>" class="finishedCheck_btn">完了</a>
                                             <% } %>
 
                                         </td>
@@ -140,8 +140,28 @@
                 </tbody>
             </table>
         </div>
+
         <% }); %>
+
+        <div class="paging">
+            <% pages.forEach(function (v,k) { %>
+            <% if (maxPage >= 25) {%>
+            <% if (v.number >= 10) {%>
+
+            <a href="<%= v.url %>" class="page dark gradient">
+                <%= v.number %></a>
+            <% } %>
+            <% } else { %>
+            <a href="<%= v.url %>" class="page dark gradient">
+                <%= v.number %></a>
+            <% } %>
+            <% }); %>
+
+        </div>
+
     </div>
+
+
 </body>
 
 </html>

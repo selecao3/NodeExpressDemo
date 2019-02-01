@@ -3,13 +3,12 @@ const $ = jQuery;
 window.jQuery = jQuery;
 require('jquery-nice-select');
 require('flatpickr');
-require('simple-pagination');
 require('../../node_modules/jquery-nice-select/css/nice-select.css');
 require('../../node_modules/flatpickr/dist/flatpickr.min.css');
-require('../../node_modules/css');
 import '../css/main.css';
 import '../css/form.css';
 import '../css/header.css';
+import '../css/paging.css';
 
 //$(function(){});でjqueryを使うことができる
 $(function() {

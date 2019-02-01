@@ -1,18 +1,9 @@
 const mc = require('../Repository/MongoConnect');
-const paginate = require('express-paginate');
 
-exports.findByQuestions = function(itemName) {
-  const result = mc.formedModel.find({questions: itemName});
-  const res = mc.formedModel.paginate(result, {page: 1, limit: 1});
+exports.findByQuestions = function(itemName, page) {
+  const query = mc.formedModel.find({questions: itemName});
+  const res = mc.formedModel.paginate(query, {page: page, limit: 5});
   return res;
-};
-
-exports.paginateTest = function() {
-  console.log('pagination start');
-  mc.formedModel.paginate({}, {page: 1, limit: 5}, function(err, result) {
-    console.log(result);
-  })
-  console.log('pagination fin');
 };
 
 exports.findById = function(id) {
@@ -65,7 +56,7 @@ exports.updateOneDataByBody = function(data, id) {
           questionersID: data.questionersID,
           questions: data.questions,
           questionsCon: data.questionsCon,
-          specialText: data.specialText,
+          specialText: data.specialText
         }
       },
       {upsert: false}, function(err) {
@@ -76,8 +67,6 @@ exports.updateOneDataByBody = function(data, id) {
       });
   return true;
 };
-
-
 
 exports.savesForQuestionerData = function(body) {
   const model = new mc.formedModel({

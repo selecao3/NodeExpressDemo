@@ -5,6 +5,7 @@ require('date-utils');
 const Json2csvParser = require('json2csv').Parser;
 const iconv = require('iconv-lite');
 const ms = require('../Services/mongoServices');
+const paginate = require('express-paginate');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -76,11 +77,18 @@ router.get('/lists', function(req, res, next) {
 
 router.get('/lists/:itemName', function(req, res, next) {
   // ms.paginateTest();
-  const promise = ms.findByQuestions(req.params.itemName);
+  const page = req.query.page;
+  const count = req.query.count;
+  const promise = ms.findByQuestions(req.params.itemName, page);
+  console.log(page);
+
   promise.then(
       function(items) {
-        console.log(items.docs);
-        res.render('itemFormat', {items: items.docs.reverse()});
+        res.render('itemFormat', {
+          items: items.docs.reverse(),
+          pages: paginate.getArrayPages(req)(5, items.pages, req.query.page),
+          maxPage: items.pages
+        });
       },
       function(error) {
         console.log(error);
@@ -88,7 +96,6 @@ router.get('/lists/:itemName', function(req, res, next) {
 });
 
 router.get('/lists/:itemName', function(req, res, next) {
-  console.log(req.query.page);
   const promise = ms.findByQuestions(req.params.itemName);
   promise.then(
       function(items) {
@@ -99,20 +106,15 @@ router.get('/lists/:itemName', function(req, res, next) {
       });
 });
 
-
-
 router.get('/lists/:itemName/:itemID', function(req, res, next) {
   const targetName = req.params.itemName;
   const targetId = req.params.itemID;
-  const tmp = ms.FinCheck2True(targetId);
-  console.log(tmp);
-  res.redirect(302, `/lists/${targetName}/#${targetId}`);
+  ms.FinCheck2True(targetId);
+  res.redirect(302, `/lists/${targetName}`);
 });
 
 router.get('/updateData/edit/:itemID', function(req, res, next) {
-  console.log(req.params.itemID);
   const promise = ms.findById(req.params.itemID);
-  console.log(promise);
   promise.then(
       function(items) {
         res.render('update', {v: items});
