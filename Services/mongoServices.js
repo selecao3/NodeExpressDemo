@@ -1,7 +1,7 @@
 const mc = require('../Repository/MongoConnect');
 
 exports.findByQuestions = function(itemName, page) {
-  const query = mc.formedModel.find({questions: itemName});
+  const query = mc.formedModel.findOne({questions: itemName});
   const res = mc.formedModel.paginate(query, {page: page, limit: 5});
   return res;
 };
@@ -83,4 +83,25 @@ exports.savesForQuestionerData = function(body) {
     checkFin: body.checkFin
   });
   return model.save();
+};
+
+exports.searchByBody = function(body) {
+  const searchTarget = {
+    // date: body.date,
+    date: new RegExp(body.date),
+    stuff: body.stuff,
+    ident: body.ident,
+    questioner: new RegExp(body.questioner),
+    questionersNumber: body.questionersNumber,
+    questionersID: body.questionersID,
+    checkFin: body.checkFin
+  };
+  for (key in searchTarget) {
+    if (searchTarget[key] == '') {
+      delete searchTarget[key];
+    }
+  }
+  console.log(searchTarget);
+  const findDatas = mc.formedModel.find(searchTarget);
+  return findDatas.exec();
 };

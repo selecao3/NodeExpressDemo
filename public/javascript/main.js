@@ -21,6 +21,15 @@ $(function() {
 });
 
 $(function() {
+  $('.date-search').flatpickr({
+    locale: 'ja',
+    enableTime: true,
+    time_24hr: true,
+    dateFormat: 'Y年m月d日'
+  });
+});
+
+$(function() {
   $('select').niceSelect();
 });
 
