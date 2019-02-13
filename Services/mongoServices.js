@@ -85,7 +85,7 @@ exports.savesForQuestionerData = function(body) {
   return model.save();
 };
 
-exports.searchByBody = function(body) {
+exports.searchByBody = function(body, page) {
   const searchTarget = {
     // date: body.date,
     date: new RegExp(body.date),
@@ -102,6 +102,7 @@ exports.searchByBody = function(body) {
     }
   }
   console.log(searchTarget);
-  const findDatas = mc.formedModel.find(searchTarget);
-  return findDatas.exec();
+  const query = mc.formedModel.find(searchTarget);
+  const res = mc.formedModel.paginate(query, {page: page, limit: 5});
+  return res;
 };

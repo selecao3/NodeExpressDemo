@@ -1,5 +1,6 @@
 const express = require('express');
 const ms = require('../Services/mongoServices');
+const paginate = require('express-paginate');
 
 const router = express.Router();
 
@@ -15,14 +16,8 @@ router.post('/postData', function(req, res, next) {
 });
 
 router.post('/search', function(req, res, next) {
-  const promise = ms.searchByBody(req.body);
-  promise.then(
-      function(items) {
-        console.log(items);
-      },
-      function() {
-        console.log('error');
-      })
+  res.cookie('searchRes', req.body, {path: '/search'});
+  res.redirect(301, '/search/result');
 });
 
 

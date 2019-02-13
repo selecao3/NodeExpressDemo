@@ -78,12 +78,12 @@ router.get('/lists', function(req, res, next) {
 router.get('/lists/:itemName', function(req, res, next) {
   // ms.paginateTest();
   const page = req.query.page;
-  const count = req.query.count;
   const promise = ms.findByQuestions(req.params.itemName, page);
   console.log(page);
 
   promise.then(
       function(items) {
+        console.log(items);
         res.render('itemFormat', {
           items: items.docs.reverse(),
           pages: paginate.getArrayPages(req)(5, items.pages, req.query.page),
@@ -95,16 +95,23 @@ router.get('/lists/:itemName', function(req, res, next) {
       });
 });
 
-router.get('/lists/:itemName', function(req, res, next) {
-  const promise = ms.findByQuestions(req.params.itemName);
+router.get('/search/result', function(req, res, next) {
+  const page = req.query.page;
+  const items = req.cookies.searchRes;
+  const promise = ms.searchByBody(items, page)
   promise.then(
       function(items) {
-        res.render('itemFormat', {items: items.reverse()});
+        res.render('itemFormat', {
+          items: items.docs.reverse(),
+          pages: paginate.getArrayPages(req)(5, items.pages, req.query.page),
+          maxPage: items.pages
+        });
       },
-      function(error) {
-        console.log(error);
-      });
+      function() {
+        console.log('coockie\'s error');
+      })
 });
+
 
 router.get('/lists/:itemName/:itemID', function(req, res, next) {
   const targetName = req.params.itemName;
