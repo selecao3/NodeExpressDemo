@@ -10,6 +10,12 @@ import '../css/form.css';
 import '../css/header.css';
 import '../css/paging.css';
 
+$(function() {
+  $('#btn_id').click(function() {
+    const flag = $('input[name="date"]');
+    console.log(flag);
+  });
+});
 //$(function(){});でjqueryを使うことができる
 $(function() {
   $('.date-input').flatpickr({

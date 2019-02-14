@@ -16,7 +16,7 @@
                                 <b>対応日時：</b>
                             </td>
                             <td class="td-right">
-                                <input name="date" type="text" class="date-input" value="<%= defaultYear %>年<%= defaultMonth %>月<%= defaultDay %>日 <%= defaultHour %>時<%= defaultMin %>分">
+                                <input name="date" type="text" class="date-input require" value="<%= defaultYear %>年<%= defaultMonth %>月<%= defaultDay %>日 <%= defaultHour %>時<%= defaultMin %>分">
                             </td>
                         </tr>
                     </tbody>
@@ -30,8 +30,8 @@
                                     <b>担当者：</b>
                                 </td>
                                 <td class="td-right">
-                                    <select name="stuff">
-                                        <option data-display="Select">選択してください</option>
+                                    <select name="stuff" class="require">
+                                        <option value="error">未選択</option>
                                         <option value="高橋">高橋</option>
                                         <option value="石田">石田</option>
                                     </select>
@@ -49,8 +49,8 @@
                                 <b>身分：</b>
                             </td>
                             <td class="td-right">
-                                <select name="ident">
-                                    <option data-display="Select">選択してください</option>
+                                <select name="ident" class="require">
+                                    <option value="error">未選択</option>
                                     <option value="学生">学生</option>
                                     <option value="教職員">教職員</option>
                                 </select>
@@ -61,7 +61,7 @@
                                 <b>氏名：</b>
                             </td>
                             <td>
-                                <input type="text" name="questioner">
+                                <input type="text" name="questioner" class="require">
                             </td>
                         </tr>
                         <tr>
@@ -85,7 +85,7 @@
                                 <b>基盤ID：</b>
                             </td>
                             <td>
-                                <input type="text" name="questionersID">
+                                <input type="text" name="questionersID" class="require">
                             </td>
                         </tr>
                     </tbody>
@@ -109,8 +109,8 @@
                                         '教育用端末関連',
                                         'その他',
                                     ]; %>
-                                    <select name="questions">
-                                        <option data-display="Select">選択してください</option>
+                                    <select name="questions" class="require">
+                                        <option value="error">未選択</option>
                                         <% ary.forEach(function (v,k) { %>
                                         <option value="<%= v %>">
                                             <%= v %>
@@ -126,7 +126,7 @@
                                 <td>
                                     <!-- textareaへ -->
                                     <!-- 必須事項と制限 -->
-                                    <input type="text" name="questionsCon">
+                                    <input type="text" name="questionsCon" class="require">
                                 </td>
                             </tr>
                         </tbody>
@@ -153,7 +153,7 @@
                     <input id="checkFin" type="checkbox" name="checkFin" value="1">
                     <label for="checkbox">完了済みならチェック</label>
                     <p class="formButton">
-                        <input type="submit" value="内容を送信する">
+                        <input type="button" id="btn_id" value="内容を送信する">
                     </p>
 
                 </div>
@@ -168,5 +168,3 @@
 </body>
 
 </html>
-
-

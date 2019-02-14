@@ -82,6 +82,7 @@ exports.savesForQuestionerData = function(body) {
     specialText: body.specialText,
     checkFin: body.checkFin
   });
+  console.log(model);
   return model.save();
 };
 
