@@ -29,14 +29,11 @@ router.get('/data2csv/:id', function(req, res, next) {
   ];
   promise.then(
       function(csvTarget) {
-        console.log(csvTarget);
         const json2csvParser = new Json2csvParser({fields});
         const csv = json2csvParser.parse(csvTarget);
         res.setHeader('Content-disposition', 'attachment; filename=data.csv');
         res.setHeader('Content-Type', 'text/csv; charset=UTF-8');
-        console.log(csv);
         const csvJP = iconv.encode(csv, 'Shift-JIS');
-        console.log(csvJP);
         res.send(csvJP);
       },
       function(error) {
@@ -79,13 +76,11 @@ router.get('/lists/:itemName', function(req, res, next) {
   // ms.paginateTest();
   const page = req.query.page;
   const promise = ms.findByQuestions(req.params.itemName, page);
-  console.log(page);
 
   promise.then(
       function(items) {
-        console.log(items);
         res.render('itemFormat', {
-          items: items.docs.reverse(),
+          items: items.docs,
           pages: paginate.getArrayPages(req)(5, items.pages, req.query.page),
           maxPage: items.pages
         });
@@ -102,7 +97,7 @@ router.get('/search/result', function(req, res, next) {
   promise.then(
       function(items) {
         res.render('itemFormat', {
-          items: items.docs.reverse(),
+          items: items.docs,
           pages: paginate.getArrayPages(req)(5, items.pages, req.query.page),
           maxPage: items.pages
         });

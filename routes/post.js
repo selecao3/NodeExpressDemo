@@ -1,6 +1,5 @@
 const express = require('express');
 const ms = require('../Services/mongoServices');
-const paginate = require('express-paginate');
 
 const router = express.Router();
 

@@ -1,7 +1,7 @@
 const mc = require('../Repository/MongoConnect');
 
 exports.findByQuestions = function(itemName, page) {
-  const query = mc.formedModel.findOne({questions: itemName});
+  const query = mc.formedModel.find({questions: itemName}).sort({date: -1});
   const res = mc.formedModel.paginate(query, {page: page, limit: 5});
   return res;
 };
@@ -102,7 +102,7 @@ exports.searchByBody = function(body, page) {
     }
   }
   console.log(searchTarget);
-  const query = mc.formedModel.find(searchTarget);
+  const query = mc.formedModel.find(searchTarget).sort({date: -1});
   const res = mc.formedModel.paginate(query, {page: page, limit: 5});
   return res;
 };
