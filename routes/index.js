@@ -41,12 +41,11 @@ router.get('/data2csv/:id', function(req, res, next) {
       });
 });
 
-router.get('/lists/:targetName/deleteData/:id', function(req, res, next) {
+router.get('/deleteData/:id', function(req, res, next) {
   const flag = ms.deleteByID(req.params.id);
-  const targetName = req.params.targetName;
   console.log(flag);
   if (flag) {
-    res.redirect(302, `/lists/${targetName}`);
+    res.redirect(302, `/`);
   } else {
     res.redirect(502, '/');
   }
