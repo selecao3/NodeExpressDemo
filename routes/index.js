@@ -45,7 +45,7 @@ router.get('/deleteData/:id', function(req, res, next) {
   const flag = ms.deleteByID(req.params.id);
   console.log(flag);
   if (flag) {
-    res.redirect(302, `/`);
+    res.redirect(302, '/');
   } else {
     res.redirect(502, '/');
   }

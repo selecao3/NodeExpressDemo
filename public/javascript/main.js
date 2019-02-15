@@ -11,39 +11,56 @@ import '../css/header.css';
 import '../css/paging.css';
 
 $(function() {
-  $('input.require').on('blur', errorMassage);
-  $('select.require').on('change', errorMassageSelect);
-  function errorMassage() {
-    let error;
-    const value = $(this).val();
-    const errorinfo = $(this).next('span.error-info');
-    if (value == '') {
-      error = true;
-    } else if (!value.match(/[^\s\t]/)) {
-      error = true;
-    }
-    if (error) {
-      errorinfo.css('display', 'block');
-    } else {
-      errorinfo.css('display', 'none');
-    }
-  };
-  function errorMassageSelect() {
-    let error;
-    const name = $(this).attr('name');
-    const value = $(`select[name=\"${name}\"] option:selected`).val();
-    const errorinfo = $(this).nextAll('span.error-info');
-    if (value == '') {
-      error = true;
-    } else if (!value.match(/[^\s\t]/)) {
-      error = true;
-    }
-    if (error) {
-      errorinfo.css('display', 'block');
-    } else {
-      errorinfo.css('display', 'none');
-    }
-  };
+  $('#submit').on('click', function() {
+    let errorinfo;
+    // const targetInput = $('input.require').map(function() {
+    //   return $(this).val();
+    // });
+    $('input.require').map(function() {
+      if ($(this).val() == '' || $(this).val().match(/[^\s\t]/) == false) {
+        errorinfo = $(this).next('span.error-info');
+        errorinfo.css('display', 'block');
+      } else {
+        errorinfo = $(this).next('span.error-info');
+        errorinfo.css('display', 'none');
+      }
+    });
+    const targetSelect = $('select.require');
+    // const valueByInput = targetInput.val();
+    // const nameBySelect = targetSelect.attr('name');
+    // console.log(targetInput[0].html());
+    // console.log(targetSelect[0].html());
+    // const errorinfo = targetInput.next('span.error-info');
+    // if (value == '') {
+    //   error = true;
+    // } else if (!value.match(/[^\s\t]/)) {
+    //   error = true;
+    // }
+    // if (error) {
+    //   errorinfo.css('display', 'block');
+    // } else {
+    //   errorinfo.css('display', 'none');
+    // }
+    return false;
+  });
+
+  // function errorMassageSelect() {
+  //   let error;
+  //   const target = $('select.require');
+  //   const name = target.attr('name');
+  //   const value = $(`select[name=\"${name}\"] option:selected`).val();
+  //   const errorinfo = target.nextAll('span.error-info');
+  //   if (value == '') {
+  //     error = true;
+  //   } else if (!value.match(/[^\s\t]/)) {
+  //     error = true;
+  //   }
+  //   if (error) {
+  //     errorinfo.css('display', 'block');
+  //   } else {
+  //     errorinfo.css('display', 'none');
+  //   }
+  // };
 });
 //$(function(){});でjqueryを使うことができる
 $(function() {

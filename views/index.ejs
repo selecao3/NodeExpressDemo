@@ -64,7 +64,7 @@
                                 <b>氏名：</b>
                             </td>
                             <td>
-                                <input type="text" name="questioner" class="require">
+                                <input type="text" name="questioner" class="require" required>
                                 <span class="error-info" hidden>質問者の指名を記入してください</span>
                             </td>
                         </tr>
@@ -160,7 +160,7 @@
                     <input id="checkFin" type="checkbox" name="checkFin" value="1">
                     <label for="checkbox">完了済みならチェック</label>
                     <p class="formButton">
-                        <input type="submit" value="内容を送信する">
+                        <input type="button" id="submit" value="内容を送信する">
                     </p>
 
                 </div>
