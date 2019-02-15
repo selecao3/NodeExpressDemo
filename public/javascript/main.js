@@ -11,10 +11,39 @@ import '../css/header.css';
 import '../css/paging.css';
 
 $(function() {
-  $('#btn_id').click(function() {
-    const flag = $('input[name="date"]');
-    console.log(flag);
-  });
+  $('input.require').on('blur', errorMassage);
+  $('select.require').on('change', errorMassageSelect);
+  function errorMassage() {
+    let error;
+    const value = $(this).val();
+    const errorinfo = $(this).next('span.error-info');
+    if (value == '') {
+      error = true;
+    } else if (!value.match(/[^\s\t]/)) {
+      error = true;
+    }
+    if (error) {
+      errorinfo.css('display', 'block');
+    } else {
+      errorinfo.css('display', 'none');
+    }
+  };
+  function errorMassageSelect() {
+    let error;
+    const name = $(this).attr('name');
+    const value = $(`select[name=\"${name}\"] option:selected`).val();
+    const errorinfo = $(this).nextAll('span.error-info');
+    if (value == '') {
+      error = true;
+    } else if (!value.match(/[^\s\t]/)) {
+      error = true;
+    }
+    if (error) {
+      errorinfo.css('display', 'block');
+    } else {
+      errorinfo.css('display', 'none');
+    }
+  };
 });
 //$(function(){});でjqueryを使うことができる
 $(function() {
@@ -27,12 +56,7 @@ $(function() {
 });
 
 $(function() {
-  $('.date-search').flatpickr({
-    locale: 'ja',
-    enableTime: true,
-    time_24hr: true,
-    dateFormat: 'Y年m月d日'
-  });
+  $('.date-search').flatpickr({locale: 'ja', dateFormat: 'Y年m月d日'});
 });
 
 $(function() {
