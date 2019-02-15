@@ -187,7 +187,7 @@ ol li {
     font-size: 32px;
 }
 
-.finishedCheck_btn{
+.finishedCheck_btn {
     display: inline-block;
     padding: 0.2em 0.5em;
     text-decoration: none;
@@ -197,11 +197,11 @@ ol li {
     border-radius: 3px;
     /* margin: 12px; */
     margin-left: auto;
-    width:45px;
+    width: 45px;
     font-size: 22px;
 }
 
-.common_btn{
+.common_btn {
     display: inline-block;
     padding: 0.2em 0.5em;
     text-decoration: none;
@@ -209,13 +209,12 @@ ol li {
     color: #FFF;
     border-bottom: solid 4px #3f498c;
     border-radius: 3px;
-    /* margin: 12px; */
     margin-left: auto;
-    width:45px;
+    width: 95px;
     font-size: 22px;
 }
 
- .square_btn:active {
+.square_btn:active {
     /*ボタンを押したとき*/
     -ms-transform: translateY(4px);
     -webkit-transform: translateY(4px);
@@ -224,10 +223,12 @@ ol li {
     border-bottom: none;
     /*線を消す*/
 }
-.finishedCheck_btn:focus { 
-    outline:0; 
+
+.finishedCheck_btn:focus {
+    outline: 0;
 }
-.finishedCheck_btn:active{
+
+.finishedCheck_btn:active {
     /*ボタンを押したとき*/
     -ms-transform: translateY(4px);
     -webkit-transform: translateY(4px);
@@ -236,7 +237,8 @@ ol li {
     border-bottom: none;
     /*線を消す*/
 }
-.common_btn:active{
+
+.common_btn:active {
     -ms-transform: translateY(4px);
     -webkit-transform: translateY(4px);
     transform: translateY(4px);
@@ -266,11 +268,12 @@ ol li {
     td.td-left {
         width: 170px;
     }
-textarea {
-    width: 80%;
-    height: 100px;
-    background: white;
-    border: 3px solid #EEA34A;
-    font-size: 14px;
-}
+
+    textarea {
+        width: 80%;
+        height: 100px;
+        background: white;
+        border: 3px solid #EEA34A;
+        font-size: 14px;
+    }
 }
