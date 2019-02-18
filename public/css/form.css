@@ -1,4 +1,4 @@
-  .formButton input[type=submit] {
+  .formButton input[type=button] {
     background-color: #FFFFFF;
     border:1px solid #999999;
     border-radius: 2px;

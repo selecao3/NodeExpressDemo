@@ -8,7 +8,7 @@
     <div id="main-edit">
         <div class="folderName">
             <span id="title">ユーザー対応記録</span>
-            <form action="/updateData/<%= v.questions %>/<%= v.id %>" method="post">
+            <form action="/updateData/<%= v.questions %>/<%= v.id %>" method="post" id="userData">
                 <table>
                     <tbody>
                         <tr>
@@ -31,17 +31,26 @@
                                     <b>担当者：</b>
                                 </td>
                                 <td class="td-right">
-                                    <select name="stuff">
-                                        <option data-display="Select">選択してください</option>
+                                    <select name="stuff" class="require">
+                                        <option value="">未選択</option>
                                         <option value="高橋" <% if (v.stuff=='高橋' ) {%>
                                             selected
                                             <% } %>>
                                             高橋</option>
+                                        <option value="本下" <% if (v.stuff=='本下' ) {%>
+                                            selected
+                                            <% } %>>
+                                            本下</option>
+                                        <option value="佐藤" <% if (v.stuff=='佐藤' ) {%>
+                                            selected
+                                            <% } %>>
+                                            佐藤</option>
                                         <option value="石田" <% if (v.stuff=='石田' ) {%>
                                             selected
                                             <% } %>>
                                             石田</option>
                                     </select>
+                                    <span class="error-info" hidden>担当者を選択してください</span>
                                 </td>
                             </tr>
                         </tbody>
@@ -56,8 +65,8 @@
                                 <b>身分：</b>
                             </td>
                             <td class="td-right">
-                                <select name="ident">
-                                    <option data-display="Select">選択してください</option>
+                                <select name="ident" class="require">
+                                    <option value="">未選択</option>
                                     <option value="学生" <% if (v.ident=='学生' ) {%>
                                         selected
                                         <% } %>>
@@ -67,6 +76,7 @@
                                         <% } %>">
                                         教職員</option>
                                 </select>
+                                <span class="error-info" hidden>身分を選択してください</span>
                             </td>
                         </tr>
                         <tr>
@@ -74,7 +84,8 @@
                                 <b>氏名：</b>
                             </td>
                             <td>
-                                <input type="text" name="questioner" value="<%= v.questioner %>">
+                                <input type="text" name="questioner" class="require" value="<%= v.questioner %>">
+                                <span class="error-info" hidden>質問者の氏名を選択してください</span>
                             </td>
                         </tr>
                         <tr>
@@ -98,7 +109,8 @@
                                 <b>基盤ID：</b>
                             </td>
                             <td>
-                                <input type="text" name="questionersID" value="<%= v.questionersID %>">
+                                <input type="text" name="questionersID" class="require" value="<%= v.questionersID %>">
+                                <span class="error-info" hidden>質問者の基盤IDを選択してください</span>
                             </td>
                         </tr>
                     </tbody>
@@ -122,8 +134,8 @@
                                         '教育用端末関連',
                                         'その他',
                                     ]; %>
-                                    <select name="questions">
-                                        <option data-display="Select">選択してください</option>
+                                    <select name="questions" class="require">
+                                        <option value="">未選択</option>
                                         <% ary.forEach(function (qName,k) { %>
                                         <option value="<%= qName %>" <% if (v.questions==qName) {%>
                                             selected
@@ -133,6 +145,7 @@
                                         </option>
                                         <% }); %>
                                     </select>
+                                    <span class="error-info" hidden>対応種別を選択してください</span>
                                 </td>
                             </tr>
                             <tr>
@@ -142,7 +155,8 @@
                                 <td>
                                     <!-- textareaへ -->
                                     <!-- 必須事項と制限 -->
-                                    <input type="text" name="questionsCon" value="<%= v.questionsCon %>">
+                                    <input type="text" name="questionsCon" class="require" value="<%= v.questionsCon %>">
+                                    <span class="error-info" hidden>質問内容を選択してください</span>
                                 </td>
                             </tr>
                         </tbody>
@@ -166,7 +180,7 @@
                 <hr>
                 <div style="margin:auto;width:200px;">
                     <p class="formButton">
-                        <input type="submit" value="内容を更新する">
+                        <input type="button" id="triggerButton" value="内容を更新する">
                     </p>
 
                 </div>
