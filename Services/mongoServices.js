@@ -69,6 +69,11 @@ exports.updateOneDataByBody = function(data, id) {
 };
 
 exports.savesForQuestionerData = function(body) {
+  // stuffでその他を選択してpostした場合、['その他','（任意の値）']で渡されるので0番目をここで弾く
+
+  if (body.stuff[0] == 'その他') {
+    body.stuff = body.stuff[1];
+  }
   const model = new mc.formedModel({
     date: body.date,
     stuff: body.stuff,

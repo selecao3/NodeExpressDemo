@@ -31,16 +31,20 @@
                                     <b>担当者：</b>
                                 </td>
                                 <td class="td-right">
-                                    <select name="stuff" class="require">
-                                        <option value="">未選択</option>
-                                        <option value="高橋">高橋</option>
-                                        <option value="本下">本下</option>
-                                        <option value="佐藤">佐藤</option>
-                                        <option value="石田">石田</option>
-                                        <option value="その他">その他</option>
-                                    </select>
+                                    <div style="display:flex;">
+                                        <select name="stuff" class="require" style="display:block">
+                                            <option value="">未選択</option>
+                                            <option value="高橋">高橋</option>
+                                            <option value="本下">本下</option>
+                                            <option value="佐藤">佐藤</option>
+                                            <option value="石田">石田</option>
+                                            <option value="その他">その他</option>
+                                        </select>
+
+                                    </div>
+
                                     <span class="error-info" hidden>担当者を選択してください</span>
-                                    <input class="otherStuff" hidden>
+                                    <input type="text" name="stuff" class="otherStuff" hidden>
                                 </td>
                             </tr>
                         </tbody>

@@ -43,24 +43,29 @@ $(function() {
   });
 });
 
+
+//その他のスタッフを追加する関数
+// MEMO: まだ未完成（2019/02/20）
 $(function() {
   $('select[name=\"stuff\"]').change(function() {
     const otherStuff = $('input.otherStuff');
     const target = $('select[name=\"stuff\"] option:selected');
-    console.log('click!');
-    console.log(target.val());
     if (target.val() == 'その他') {
-      console.log('if!');
       otherStuff.css('display', 'block');
-      const otherStuffName = otherStuff.val();
-      otherStuff.on('input', function() {
-        target.val(otherStuffName);
-        target.html(otherStuffName);
-      })
     } else {
-      console.log('else!');
       otherStuff.css('display', 'none');
     }
+  })
+})
+
+$(function() {
+  $('#searchButton').on('click', function() {
+    $('form').attr('action', '/search');
+    $('form').submit();
+  })
+  $('#exportCSVButton').on('click', function() {
+    $('form').attr('action', '/exportCSV');
+    $('form').submit();
   })
 })
 
