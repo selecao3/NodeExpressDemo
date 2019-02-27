@@ -58,7 +58,7 @@ router.get('/lists', function(req, res, next) {
     '学内ライセンスソフトウェア', '端末設定対応', '証明書リクエスト',
     '教育用端末関連', 'その他'
   ];
-  fld = ms.findForLatestDates(title);
+  fld = ms.findByTitleForLatestDates(title);
   Promise.all(fld).then(
       function(fld) {
         const result = fld.filter(v => v);

@@ -1,9 +1,11 @@
 const mc = require('../Repository/MongoConnect');
 
+// findBy***シリーズ
+// ***の部分を探して結果を返す
 exports.findByQuestions = function(itemName, page) {
   const query = mc.formedModel.find({questions: itemName}).sort({date: -1});
-  const res = mc.formedModel.paginate(query, {page: page, limit: 5});
-  return res;
+  const result = mc.formedModel.paginate(query, {page: page, limit: 5});
+  return result;
 };
 
 exports.findById = function(id) {
@@ -11,7 +13,7 @@ exports.findById = function(id) {
   return result;
 };
 
-exports.findForLatestDates = function(title) {
+exports.findByTitleForLatestDates = function(title) {
   const result = [];
   let tmp;
   title.forEach(ele => {
@@ -20,6 +22,7 @@ exports.findForLatestDates = function(title) {
   });
   return result;
 };
+// findBy***シリーズ fin
 
 exports.FinCheck2True = function(itemID) {
   console.log(itemID);

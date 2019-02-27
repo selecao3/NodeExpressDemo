@@ -19,6 +19,11 @@ router.post('/search', function(req, res, next) {
   res.redirect(301, '/search/result');
 });
 
+router.post('/exportCSV', function(req, res, next) {
+  res.cookie('csvRes', req.body, {path: '/exportCSV'});
+  console.log(csvRes);
+  res.redirect(301, '/search/result');
+});
 
 
 router.post('/updateData/:itemName/:itemID', function(req, res, next) {

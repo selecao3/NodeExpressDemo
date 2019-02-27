@@ -58,6 +58,7 @@ $(function() {
   })
 })
 
+// 検索ボタンとCSV出力ボタンを切り替える
 $(function() {
   $('#searchButton').on('click', function() {
     $('form').attr('action', '/search');
