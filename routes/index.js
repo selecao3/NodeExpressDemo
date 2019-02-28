@@ -105,8 +105,8 @@ router.get('/search/result', function (req, res, next) {
         maxPage: items.pages
       });
     },
-    function () {
-      console.log('coockie\'s error');
+    function (error) {
+      console.log(error);
     })
 });
 
