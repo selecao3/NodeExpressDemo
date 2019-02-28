@@ -2,10 +2,7 @@ const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate');
 const Schema = mongoose.Schema;
 const uri = 'mongodb://localhost/formedDB';
-mongoose.connect(
-  uri,
-  { useNewUrlParser: true }
-);
+mongoose.connect(uri, {useNewUrlParser: true});
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connect error:'));
 // todo: mongooseのオプションでselect文

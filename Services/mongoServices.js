@@ -1,64 +1,43 @@
+require('date-utils');
 const mc = require('../Repository/MongoConnect');
 
 // findBy***シリーズ
 // ***の部分を探して結果を返す
-exports.findByQuestions = function (itemName, page) {
-  const query = mc.formedModel.find({
-    questions: itemName
-  }).sort({
-    date: -1
-  });
-  const result = mc.formedModel.paginate(query, {
-    page: page,
-    limit: 5
-  });
+exports.findByQuestions = function(itemName, page) {
+  const query = mc.formedModel.find({questions: itemName}).sort({date: -1});
+  const result = mc.formedModel.paginate(query, {page: page, limit: 5});
   return result;
 };
 
-exports.findById = function (id) {
-  const result = mc.formedModel.findOne({
-    _id: id
-  }).exec();
+exports.findById = function(id) {
+  const result = mc.formedModel.findOne({_id: id}).exec();
   return result;
 };
 
-exports.findByTitleForLatestDates = function (title) {
+exports.findByTitleForLatestDates = function(title) {
   const result = [];
   let tmp;
   title.forEach(ele => {
-    tmp = mc.formedModel.findOne({
-      questions: ele
-    }).sort({
-      date: -1
-    }).exec();
+    tmp = mc.formedModel.findOne({questions: ele}).sort({date: -1}).exec();
     result.push(tmp);
   });
   return result;
 };
 // findBy***シリーズ fin
 
-exports.FinCheck2True = function (itemID) {
+exports.FinCheck2True = function(itemID) {
   console.log(itemID);
   // idではなく、_id
-  mc.formedModel.updateOne({
-    _id: itemID
-  }, {
-    $set: {
-      checkFin: '1'
-    }
-  }, {
-    upsert: false
-  }, function (err) {
-    if (err) {
-      console.log(err);
-    }
-  });
+  mc.formedModel.updateOne(
+      {_id: itemID}, {$set: {checkFin: '1'}}, {upsert: false}, function(err) {
+        if (err) {
+          console.log(err);
+        }
+      });
 };
 
-exports.deleteByID = function (itemID) {
-  mc.formedModel.deleteOne({
-    _id: itemID
-  }, function (err) {
+exports.deleteByID = function(itemID) {
+  mc.formedModel.deleteOne({_id: itemID}, function(err) {
     if (err) {
       console.log('error');
       return false;
@@ -67,43 +46,45 @@ exports.deleteByID = function (itemID) {
   return true;
 };
 
-exports.updateOneDataByBody = function (data, id) {
+exports.updateOneDataByBody = function(data, id) {
   // idではなく、_id
   console.log(data.questionsCon);
-  mc.formedModel.updateOne({
-    _id: id
-  }, {
-    $set: {
-      stuff: data.stuff,
-      ident: data.ident,
-      questioner: data.questioner,
-      questionersNumber: data.questionersNumber,
-      questionersAddress: data.questionersAddress,
-      questionersID: data.questionersID,
-      questions: data.questions,
-      questionsCon: data.questionsCon,
-      specialText: data.specialText
-    }
-  }, {
-    upsert: false
-  }, function (err) {
-    if (err) {
-      console.log(err);
-      return false;
-    }
-  });
+  mc.formedModel.updateOne(
+      {_id: id}, {
+        $set: {
+          stuff: data.stuff,
+          ident: data.ident,
+          questioner: data.questioner,
+          questionersNumber: data.questionersNumber,
+          questionersAddress: data.questionersAddress,
+          questionersID: data.questionersID,
+          questions: data.questions,
+          questionsCon: data.questionsCon,
+          specialText: data.specialText
+        }
+      },
+      {upsert: false}, function(err) {
+        if (err) {
+          console.log(err);
+          return false;
+        }
+      });
   return true;
 };
 
-exports.savesForQuestionerData = function (body) {
+exports.savesForQuestionerData = function(body) {
   // stuffでその他を選択してpostした場合、['その他','（任意の値）']で渡されるので0番目をここで弾く
-
   let stuff;
   if (body.stuff[0] == 'その他') {
     stuff = body.stuff[1];
   } else {
     stuff = body.stuff[0];
   }
+  // dateをDate型にする
+  // body.date = body.date.replace(/[\s]/g, '');
+  // const date = body.date.replace(/[^0-9]/g, ',').slice(0, -1);
+  // console.log(date);
+
   const model = new mc.formedModel({
     date: body.date,
     stuff: stuff,
@@ -122,7 +103,7 @@ exports.savesForQuestionerData = function (body) {
 };
 
 // 検索画面で入力されたデータを元に該当するデータをページ数と共に返す
-exports.searchedDataWithPage = function (body, page) {
+exports.searchedDataWithPage = function(body, page) {
   const searchTarget = {
     // date: body.date,
     date: new RegExp(body.date),
@@ -139,18 +120,23 @@ exports.searchedDataWithPage = function (body, page) {
       delete searchTarget[key];
     }
   }
+  searchBetweenDate(body.date);
   console.log(searchTarget);
-  const query = mc.formedModel.find(searchTarget).sort({
-    date: -1
-  });
-  const res = mc.formedModel.paginate(query, {
-    page: page,
-    limit: 5
-  });
+  const query = mc.formedModel.find(searchTarget)
+                    .find({'date': {'$lte': body.date}})
+                    .sort({date: -1});
+  const res = mc.formedModel.paginate(query, {page: page, limit: 5});
   return res;
 };
 
-exports.searchedDataExportCSV = function (body) {
+function searchBetweenDate(date) {
+  const pro = mc.formedModel.find({'date': {'$lte': date}});
+  pro.then(function(res) {
+    console.log(res);
+  })
+}
+
+exports.searchedDataExportCSV = function(body) {
   const searchTarget = {
     // date: body.date,
     date: new RegExp(body.date),
@@ -168,8 +154,6 @@ exports.searchedDataExportCSV = function (body) {
     }
   }
   console.log(searchTarget);
-  const result = mc.formedModel.find(searchTarget).sort({
-    date: -1
-  });
+  const result = mc.formedModel.find(searchTarget).sort({date: -1});
   return result;
 };
