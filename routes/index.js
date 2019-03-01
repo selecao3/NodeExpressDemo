@@ -8,7 +8,7 @@ const ms = require('../Services/mongoServices');
 const paginate = require('express-paginate');
 
 /* GET home page. */
-router.get('/', function (req, res, next) {
+router.get('/', function(req, res, next) {
   const dt = new Date();
   res.render('index', {
     defaultYear: dt.toFormat('YYYY'),
@@ -19,7 +19,7 @@ router.get('/', function (req, res, next) {
   });
 });
 
-router.get('/data2csv/:id', function (req, res, next) {
+router.get('/data2csv/:id', function(req, res, next) {
   // MEMO: req.params.id => findByIdのidは_idでないといけない
   const promise = ms.findById(req.params.id);
   const fields = [
@@ -28,22 +28,20 @@ router.get('/data2csv/:id', function (req, res, next) {
     'specialText'
   ];
   promise.then(
-    function (csvTarget) {
-      const json2csvParser = new Json2csvParser({
-        fields
+      function(csvTarget) {
+        const json2csvParser = new Json2csvParser({fields});
+        const csv = json2csvParser.parse(csvTarget);
+        res.setHeader('Content-disposition', 'attachment; filename=data.csv');
+        res.setHeader('Content-Type', 'text/csv; charset=UTF-8');
+        const csvJP = iconv.encode(csv, 'Shift-JIS');
+        res.send(csvJP);
+      },
+      function(error) {
+        console.log(error);
       });
-      const csv = json2csvParser.parse(csvTarget);
-      res.setHeader('Content-disposition', 'attachment; filename=data.csv');
-      res.setHeader('Content-Type', 'text/csv; charset=UTF-8');
-      const csvJP = iconv.encode(csv, 'Shift-JIS');
-      res.send(csvJP);
-    },
-    function (error) {
-      console.log(error);
-    });
 });
 
-router.get('/deleteData/:id', function (req, res, next) {
+router.get('/deleteData/:id', function(req, res, next) {
   const flag = ms.deleteByID(req.params.id);
   console.log(flag);
   if (flag) {
@@ -53,7 +51,7 @@ router.get('/deleteData/:id', function (req, res, next) {
   }
 });
 
-router.get('/lists', function (req, res, next) {
+router.get('/lists', function(req, res, next) {
   let fld = [];
   const title = [
     'パスワードリクエスト', 'ICカード不具合', '履修登録関連',
@@ -62,55 +60,54 @@ router.get('/lists', function (req, res, next) {
   ];
   fld = ms.findByTitleForLatestDates(title);
   Promise.all(fld).then(
-    function (fld) {
-      const result = fld.filter(v => v);
-      res.render('lists', {
-        title: result
+      function(fld) {
+        const result = fld.filter(v => v);
+        res.render('lists', {title: result});
+      },
+      function(error) {
+        console.log(error);
       });
-    },
-    function (error) {
-      console.log(error);
-    });
 });
 
 // TODO: pagingの実装
 
-router.get('/lists/:itemName', function (req, res, next) {
+router.get('/lists/:itemName', function(req, res, next) {
   // ms.paginateTest();
   const page = req.query.page;
   const promise = ms.findByQuestions(req.params.itemName, page);
 
   promise.then(
-    function (items) {
-      res.render('itemFormat', {
-        items: items.docs,
-        pages: paginate.getArrayPages(req)(5, items.pages, req.query.page),
-        maxPage: items.pages
+      function(items) {
+        res.render('itemFormat', {
+          items: items.docs,
+          pages: paginate.getArrayPages(req)(5, items.pages, req.query.page),
+          maxPage: items.pages
+        });
+      },
+      function(error) {
+        console.log(error);
       });
-    },
-    function (error) {
-      console.log(error);
-    });
 });
 
-router.get('/search/result', function (req, res, next) {
+router.get('/search/result', function(req, res, next) {
   const page = req.query.page;
   const items = req.cookies.searchRes;
   const promise = ms.searchedDataWithPage(items, page)
   promise.then(
-    function (items) {
-      res.render('itemFormat', {
-        items: items.docs,
-        pages: paginate.getArrayPages(req)(5, items.pages, req.query.page),
-        maxPage: items.pages
-      });
-    },
-    function (error) {
-      console.log(error);
-    })
+      function(items) {
+        console.log(items.docs);
+        res.render('itemFormat', {
+          items: items.docs,
+          pages: paginate.getArrayPages(req)(5, items.pages, req.query.page),
+          maxPage: items.pages
+        });
+      },
+      function(error) {
+        console.log(error);
+      })
 });
 
-router.get('/exportCSV/result', function (req, res, next) {
+router.get('/exportCSV/result', function(req, res, next) {
   const items = req.cookies.csvRes;
   const fields = [
     'date', 'stuff', 'ident', 'questioner', 'questionersNumber',
@@ -119,41 +116,37 @@ router.get('/exportCSV/result', function (req, res, next) {
   ];
   const promise = ms.searchedDataExportCSV(items)
   promise.then(
-    function (csvTarget) {
-      const json2csvParser = new Json2csvParser({
-        fields
+      function(csvTarget) {
+        const json2csvParser = new Json2csvParser({fields});
+        const csv = json2csvParser.parse(csvTarget);
+        res.setHeader('Content-disposition', 'attachment; filename=data.csv');
+        res.setHeader('Content-Type', 'text/csv; charset=UTF-8');
+        const csvJP = iconv.encode(csv, 'Shift-JIS');
+        res.send(csvJP);
+      },
+      function(error) {
+        console.log(error);
       });
-      const csv = json2csvParser.parse(csvTarget);
-      res.setHeader('Content-disposition', 'attachment; filename=data.csv');
-      res.setHeader('Content-Type', 'text/csv; charset=UTF-8');
-      const csvJP = iconv.encode(csv, 'Shift-JIS');
-      res.send(csvJP);
-    },
-    function (error) {
-      console.log(error);
-    });
 });
 
 
-router.get('/lists/:itemName/:itemID', function (req, res, next) {
+router.get('/lists/:itemName/:itemID', function(req, res, next) {
   const targetName = req.params.itemName;
   const targetId = req.params.itemID;
   ms.FinCheck2True(targetId);
   res.redirect(302, `/lists/${targetName}`);
 });
 
-router.get('/updateData/edit/:itemID', function (req, res, next) {
+router.get('/updateData/edit/:itemID', function(req, res, next) {
   const promise = ms.findById(req.params.itemID);
   promise.then(
-    function (items) {
-      res.render('update', {
-        v: items
+      function(items) {
+        res.render('update', {v: items});
+      },
+      function(error) {
+        console.log(error);
+        res.render('error');
       });
-    },
-    function (error) {
-      console.log(error);
-      res.render('error');
-    });
 });
 
 module.exports = router;

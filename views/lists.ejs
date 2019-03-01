@@ -10,60 +10,69 @@
     <div id="main">
         <div id="home">
             <div id="main-menu">
-                <h2>検索画面</h2>
+
                 <div class="folderName">
+                    <span style="font-size:32px;">フィルタ</span>
+                    <hr>
                     <form action="/search" method="post">
                         <table style="width:100%;font-size: 20px">
                             <tbody>
                                 <tr>
-                                    <td>
-                                        <b>日付: </b>
-                                        <input name="date" type="text" class="date-search">
+                                    <td colspan="3">
+                                        <b>
+                                            日付：
+                                        </b>
                                     </td>
-
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="width:50%;">
+                                        <input name="beforedate" type="text" class="date-search">から
+                                    </td>
                                     <td>
-
+                                        <input name="afterdate" type="text" class="date-search">まで
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
                                         <b>担当者: </b>
+                                    </td>
+                                    <td>
                                         <select name="stuff">
                                             <option value="">未選択</option>
                                             <option value="高橋">高橋</option>
+                                            <option value="本下">本下</option>
+                                            <option value="佐藤">佐藤</option>
                                             <option value="石田">石田</option>
+                                            <option value="その他">その他</option>
                                         </select>
-
-                                    </td>
-
-                                </tr>
-
-                                <tr>
-                                    <td rowspan="3">
-                                        <b>質問者の身分</b>
-                                        <select name="ident">
-                                            <option value="">未選択</option>
-                                            <option value="学生">学生</option>
-                                            <option value="教職員">教職員</option>
-                                        </select>
-
                                     </td>
                                     <td>
-                                        <b>質問者の名前</b>
+                                        <b>質問者の名前:</b>
                                         <input type="text" name="questioner">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <b>質問者の学籍番号</b>
+                                        <b>質問者の身分:</b>
+                                    </td>
+                                    <td>
+                                        <select name="ident">
+                                            <option value="">未選択</option>
+                                            <option value="学生">学生</option>
+                                            <option value="教職員">教職員</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <b>質問者の学籍番号:</b>
                                         <input type="text" name="questionersNumber">
+
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <b>質問者の基盤ID</b>
-                                        <input type="text" name="questionersID">
+                                        <b>完了済みか否か: </b>
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">
-                                        <b>完了済みか否か</b>
+                                    <td>
                                         <select name="checkFin">
                                             <option value="">未選択</option>
                                             <option value="1">完了</option>
@@ -71,16 +80,27 @@
                                         </select>
 
                                     </td>
+                                    <td>
+                                        <b>質問者の基盤ID:</b>
+                                        <input type="text" name="questionersID">
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
+
+
                         <hr>
-                        <p class="formButton">
-                            <input id="searchButton" type="button" value="検索">
-                        </p>
-                        <p class="formButton">
-                            <input id="exportCSVButton" type="button" value="CSV出力">
-                        </p>
+                        <div style="display: flex;margin: auto;width: max-content;">
+                            <p class="formButton">
+                                <input id="searchButton" type="button" value="検索">
+                            </p>
+                            <p class="formButton">
+                                <input id="exportCSVButton" type="button" value="CSV出力">
+                            </p>
+
+                        </div>
+
                     </form>
                 </div>
 
@@ -106,10 +126,7 @@
             </div>
             <!-- </div> -->
         </div>
-
     </div>
-
-
 </body>
 
 </html>
