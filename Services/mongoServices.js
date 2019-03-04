@@ -104,12 +104,8 @@ exports.savesForQuestionerData = function(body) {
 
 // 検索画面で入力されたデータを元に該当するデータをページ数と共に返す
 exports.searchedDataWithPage = function(body, page) {
-  const date = new RegExp(body.date);
-  console.log(body.date);
-  console.log(date);
   const searchTarget = {
     // date: body.date,
-    date: date,
     stuff: body.stuff,
     ident: body.ident,
     questioner: new RegExp(body.questioner),
@@ -126,14 +122,13 @@ exports.searchedDataWithPage = function(body, page) {
   }
   console.log(searchTarget);
   let query;
-  if (body.date === undefined) {
-    console.log('aaa');
+  if (body.beforedate === '' && body.afterdate === '') {
     query = mc.formedModel.find(searchTarget).sort({date: -1});
   } else {
-    console.log('bbb');
-    query = mc.formedModel.find(searchTarget)
-                .find({'date': {'$lte': body.date}})
-                .sort({date: -1});
+    query =
+        mc.formedModel.find(searchTarget)
+            .find({'date': {'$gte': body.beforedate, '$lte': body.afterdate}})
+            .sort({date: -1});
   }
 
   const res = mc.formedModel.paginate(query, {page: page, limit: 5});
@@ -144,7 +139,6 @@ exports.searchedDataWithPage = function(body, page) {
 exports.searchedDataExportCSV = function(body) {
   const searchTarget = {
     // date: body.date,
-    date: new RegExp(body.date),
     stuff: body.stuff,
     ident: body.ident,
     questioner: new RegExp(body.questioner),
@@ -159,6 +153,14 @@ exports.searchedDataExportCSV = function(body) {
     }
   }
   console.log(searchTarget);
-  const result = mc.formedModel.find(searchTarget).sort({date: -1});
-  return result;
+  let query;
+  if (body.beforedate === '' && body.afterdate === '') {
+    query = mc.formedModel.find(searchTarget).sort({date: -1});
+  } else {
+    query =
+        mc.formedModel.find(searchTarget)
+            .find({'date': {'$gte': body.beforedate, '$lte': body.afterdate}})
+            .sort({date: -1});
+  }
+  return query;
 };
