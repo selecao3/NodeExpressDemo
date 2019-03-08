@@ -11,21 +11,26 @@ import '../css/header.css';
 import '../css/paging.css';
 
 //記入チェックの関数
-$(function () {
-  $('#triggerButton').on('click', function () {
+$(function() {
+  $('#triggerButton').on('click', function() {
     let errorinfo;
     let flag = true;
-    $('input.require').each(function () {
+    $('input.require').each(function() {
       if ($(this).val() == '' || $(this).val().match(/[^\s\t]/) == false) {
-        errorinfo = $(this).next('span.error-info');
-        errorinfo.css('display', 'block');
-        flag = false;
+        const status = $(this).css('display');
+        // 担当者のその他を入力するinputタグが非表示の時を弾く
+        if (status !== 'none') {
+          errorinfo = $(this).next('span.error-info');
+          errorinfo.css('display', 'block');
+          flag = false;
+        }
+
       } else {
         errorinfo = $(this).next('span.error-info');
         errorinfo.css('display', 'none');
       }
     });
-    $('select.require').each(function () {
+    $('select.require').each(function() {
       const nameBySelect = $(this).attr('name');
       const target = $(`select[name=\"${nameBySelect}\"] option:selected`);
       if (target.val() == '' || target.val().match(/[^\s\t]/) == false) {
@@ -46,8 +51,8 @@ $(function () {
 
 //その他のスタッフを追加する関数
 // MEMO: まだ未完成（2019/02/20）
-$(function () {
-  $('select[name=\"stuff\"]').change(function () {
+$(function() {
+  $('select[name=\"stuff\"]').change(function() {
     const otherStuff = $('input.otherStuff');
     const target = $('select[name=\"stuff\"] option:selected');
     if (target.val() == 'その他') {
@@ -59,19 +64,19 @@ $(function () {
 })
 
 // 検索ボタンとCSV出力ボタンを切り替える
-$(function () {
-  $('#searchButton').on('click', function () {
+$(function() {
+  $('#searchButton').on('click', function() {
     $('form').attr('action', '/search');
     $('form').submit();
   })
-  $('#exportCSVButton').on('click', function () {
+  $('#exportCSVButton').on('click', function() {
     $('form').attr('action', '/exportCSV');
     $('form').submit();
   })
 })
 
 //$(function(){});でjqueryを使うことができる
-$(function () {
+$(function() {
   $('.date-input').flatpickr({
     locale: 'ja',
     enableTime: true,
@@ -80,21 +85,18 @@ $(function () {
   });
 });
 
-$(function () {
-  $('.date-search').flatpickr({
-    locale: 'ja',
-    dateFormat: 'Y年m月d日'
-  });
+$(function() {
+  $('.date-search').flatpickr({locale: 'ja', dateFormat: 'Y年m月d日'});
 });
 
-$(function () {
+$(function() {
   $('select').niceSelect();
 });
 
-$(function () {
+$(function() {
   const targetArea = $('#checkFinFalseArea');
   const str = targetArea.html();
-  $('#checkFin').change(function () {
+  $('#checkFin').change(function() {
     const prop = $(this).prop('checked');
     if (prop) {
       targetArea.html('');
